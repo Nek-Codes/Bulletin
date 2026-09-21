@@ -1,82 +1,29 @@
-const pages = [
-    "Pages/Bi-monthly Bulletin.png",
-    "Pages/contents.png"
-];
+<!DOCTYPE html>
+<html lang="en">
 
-const book = document.getElementById("book");
+<head>
 
-window.addEventListener("load", function () {
+    <meta charset="UTF-8">
 
-    if (typeof St === "undefined" || !St.PageFlip) {
-        console.error("StPageFlip library did not load.");
-        return;
-    }
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    const pageFlip = new St.PageFlip(book, {
+    <title>Bi-monthly Bulletin</title>
 
-        width: 700,
-        height: 990,
+    <link rel="stylesheet" href="style.css">
 
-        size: "stretch",
+</head>
 
-        minWidth: 280,
-        maxWidth: 700,
+<body>
 
-        minHeight: 396,
-        maxHeight: 990,
+    <div id="book"></div>
 
-        autoSize: true,
+    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
 
-        showCover: true,
+    <script src="script.js"></script>
 
-        usePortrait: true,
+</body>
 
-        drawShadow: true,
-        maxShadowOpacity: 0.45,
-
-        flippingTime: 1400,
-
-        useMouseEvents: true,
-
-        mobileScrollSupport: false,
-
-        disableFlipByClick: false,
-
-        swipeDistance: 30
-    });
-
-    const imagePromises = pages.map(function (src) {
-
-        return new Promise(function (resolve, reject) {
-
-            const img = new Image();
-
-            img.onload = resolve;
-
-            img.onerror = function () {
-                reject(new Error("Could not load: " + src));
-            };
-
-            img.src = src;
-        });
-
-    });
-
-    Promise.all(imagePromises)
-        .then(function () {
-
-            console.log("All pages loaded.");
-
-            pageFlip.loadFromImages(pages);
-
-        })
-        .catch(function (error) {
-
-            console.error(
-                "Page loading error:",
-                error
-            );
-
-        });
-
-});
+</html>
