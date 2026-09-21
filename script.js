@@ -7,6 +7,10 @@ const pageContainer = document.getElementById("pageContainer");
 const nextPage = document.getElementById("nextPage");
 const prevPage = document.getElementById("prevPage");
 
+if (!pageContainer || !nextPage || !prevPage) {
+    console.error("Required DOM elements not found.");
+}
+
 let currentPage = 0;
 
 
