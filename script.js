@@ -1,6 +1,6 @@
 const pages = [
     "Pages/Bi-monthly Bulletin.png",
-    "Pages/Page 2.png"
+    "Pages/contents.png"
 ];
 
 let currentPage = 0;
