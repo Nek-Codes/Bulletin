@@ -67,14 +67,14 @@ window.addEventListener("load", function () {
             the unwanted extra cover/facing page.
         */
 
-        showCover: false,
+        showCover: true,
 
 
         /*
             Portrait behaviour.
         */
 
-        usePortrait: true,
+        usePortrait: false,
 
 
         /*
