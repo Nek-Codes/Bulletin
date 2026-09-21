@@ -20,77 +20,21 @@ body {
     overflow: hidden;
 }
 
-
-/*
-==================================================
-RESPONSIVE BOOK AREA
-==================================================
-*/
-
 #book {
-    /*
-        A4 portrait ratio:
-
-        210 / 297 = 0.707
-
-        The book will never become larger
-        than the available screen.
-    */
-
-    width: min(88vw, 700px);
-    height: min(90vh, 990px);
-
-    aspect-ratio: 700 / 990;
+    width: min(92vw, 700px);
+    height: min(92vh, 990px);
 
     position: relative;
-
-    margin: auto;
 }
 
-
-/*
-==================================================
-STPAGEFLIP CANVAS
-==================================================
-*/
-
-#book canvas {
-    display: block;
-
-    width: 100% !important;
-    height: 100% !important;
-}
-
-
-/*
-==================================================
-SMALL PHONES
-==================================================
+/* IMPORTANT:
+   Do NOT force canvas width/height here.
+   StPageFlip handles the canvas itself.
 */
 
 @media (max-width: 600px) {
-
     #book {
         width: 94vw;
-        height: auto;
-
-        aspect-ratio: 700 / 990;
-    }
-}
-
-
-/*
-==================================================
-VERY SHORT SCREENS
-==================================================
-*/
-
-@media (max-height: 600px) {
-
-    #book {
-        height: 92vh;
-        width: auto;
-
-        aspect-ratio: 700 / 990;
+        height: 94vh;
     }
 }
