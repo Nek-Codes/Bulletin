@@ -1,4 +1,3 @@
-```javascript
 const pages = [
     "Pages/Bi-monthly Bulletin.png",
     "Pages/contents.png"
@@ -60,4 +59,3 @@ prevPage.addEventListener("click", () => {
     }
 
 });
-```
