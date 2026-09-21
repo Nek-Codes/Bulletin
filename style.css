@@ -1,3 +1,4 @@
+```css
 * {
     box-sizing: border-box;
     margin: 0;
@@ -17,32 +18,101 @@ body {
     justify-content: center;
     align-items: center;
 
+    /*
+       Prevent the browser from creating
+       unwanted scrollbars around the book.
+    */
     overflow: hidden;
-}
 
-
-/* Bulletin container */
-
-#book {
-    width: min(82vw, 760px);
-    height: min(92vh, 1075px);
-
-    max-width: 760px;
-    max-height: 1075px;
-
-    position: relative;
+    /*
+       Safe area for phones with notches.
+    */
+    padding:
+        env(safe-area-inset-top)
+        env(safe-area-inset-right)
+        env(safe-area-inset-bottom)
+        env(safe-area-inset-left);
 }
 
 
 /*
-   Remove any extra visual frame
-   around the flipbook itself.
+==================================================
+BOOK CONTAINER
+==================================================
 */
 
-.stf__parent {
-    background: transparent !important;
+#book {
+    /*
+       The library will resize this container.
+       We give it the largest sensible area
+       available on the current screen.
+    */
+
+    width: min(92vw, 760px);
+    height: min(92vh, 1075px);
+
+    /*
+       Keep the bulletin centered.
+    */
+
+    margin: auto;
+
+    position: relative;
+
+    /*
+       Never let the container itself
+       create a visible white frame.
+    */
+
+    background: transparent;
 }
 
-.stf__block {
-    background: transparent !important;
+
+/*
+==================================================
+STPAGEFLIP INTERNAL CANVAS
+==================================================
+*/
+
+#book canvas {
+    display: block;
+
+    /*
+       Do not allow the canvas to create
+       an unexpected inline gap.
+    */
+
+    vertical-align: middle;
 }
+
+
+/*
+==================================================
+MOBILE
+==================================================
+*/
+
+@media (max-width: 600px) {
+
+    #book {
+        width: 94vw;
+        height: 94vh;
+    }
+}
+
+
+/*
+==================================================
+VERY SHORT SCREENS
+==================================================
+*/
+
+@media (max-height: 600px) {
+
+    #book {
+        width: auto;
+        height: 92vh;
+        max-width: 94vw;
+    }
+}
+```
