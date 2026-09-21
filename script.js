@@ -1,28 +1,15 @@
-const pages = [
-    "Pages/Bi-monthly Bulletin.png",
-    "Pages/contents.png"
-];
+const sheet = document.getElementById("sheet1");
 
-let currentPage = 0;
+let flipped = false;
 
-const page = document.getElementById("page");
-const pageImage = document.getElementById("pageImage");
+sheet.addEventListener("click", function () {
 
-page.addEventListener("click", () => {
+    flipped = !flipped;
 
-    if (currentPage >= pages.length - 1) return;
+    if (flipped) {
+        sheet.classList.add("flipped");
+    } else {
+        sheet.classList.remove("flipped");
+    }
 
-    // Start the flip
-    page.classList.add("flipping");
-
-    // Change image halfway through the animation
-    setTimeout(() => {
-        currentPage++;
-        pageImage.src = pages[currentPage];
-    }, 400);
-
-    // Remove animation class
-    setTimeout(() => {
-        page.classList.remove("flipping");
-    }, 800);
 });
