@@ -6,10 +6,12 @@ const pages = [
 const book = document.getElementById("book");
 
 let currentPage = 0;
-let pageElements = [];
+
+const pageElements = [];
 
 
-/* Create all pages */
+/* CREATE PAGES */
+
 pages.forEach((image, index) => {
 
     const page = document.createElement("div");
@@ -21,6 +23,7 @@ pages.forEach((image, index) => {
     const img = document.createElement("img");
 
     img.src = image;
+
     img.alt = "Bulletin page " + (index + 1);
 
     page.appendChild(img);
@@ -31,23 +34,25 @@ pages.forEach((image, index) => {
 });
 
 
-/* Click left/right side */
+/* CLICK TO TURN */
+
 book.addEventListener("click", function(event) {
 
     const rect = book.getBoundingClientRect();
 
-    const clickX = event.clientX - rect.left;
+    const x = event.clientX - rect.left;
 
     const middle = rect.width / 2;
 
 
-    /* RIGHT SIDE → NEXT PAGE */
+    /* NEXT */
 
-    if (clickX > middle) {
+    if (x > middle) {
 
         if (currentPage < pageElements.length - 1) {
 
-            pageElements[currentPage].classList.add("flipped");
+            pageElements[currentPage]
+                .classList.add("flipped");
 
             currentPage++;
         }
@@ -55,7 +60,7 @@ book.addEventListener("click", function(event) {
     }
 
 
-    /* LEFT SIDE → PREVIOUS PAGE */
+    /* PREVIOUS */
 
     else {
 
@@ -63,9 +68,9 @@ book.addEventListener("click", function(event) {
 
             currentPage--;
 
-            pageElements[currentPage].classList.remove("flipped");
+            pageElements[currentPage]
+                .classList.remove("flipped");
         }
-
     }
 
 });
