@@ -1,152 +1,82 @@
-/*
-==================================================
-BULLETIN PAGES
-==================================================
-*/
-
 const pages = [
     "Pages/Bi-monthly Bulletin.png",
     "Pages/contents.png"
 ];
 
-
-/*
-==================================================
-BOOK ELEMENT
-==================================================
-*/
-
 const book = document.getElementById("book");
 
+window.addEventListener("load", function () {
 
-/*
-==================================================
-CREATE STPAGEFLIP
-==================================================
-*/
+    if (typeof St === "undefined" || !St.PageFlip) {
+        console.error("StPageFlip library did not load.");
+        return;
+    }
 
-const pageFlip = new St.PageFlip(book, {
+    const pageFlip = new St.PageFlip(book, {
 
-    /*
-        Base A4-style portrait proportions.
+        width: 700,
+        height: 990,
 
-        These are the reference dimensions.
-        "stretch" allows the engine to resize
-        them for the actual screen.
-    */
+        size: "stretch",
 
-    width: 700,
-    height: 990,
+        minWidth: 280,
+        maxWidth: 700,
 
+        minHeight: 396,
+        maxHeight: 990,
 
-    /*
-        RESPONSIVE MODE
+        autoSize: true,
 
-        The book stretches to its parent
-        while respecting the limits below.
-    */
+        showCover: true,
 
-    size: "stretch",
+        usePortrait: true,
 
-    minWidth: 280,
-    maxWidth: 760,
+        drawShadow: true,
+        maxShadowOpacity: 0.45,
 
-    minHeight: 396,
-    maxHeight: 1075,
+        flippingTime: 1400,
 
+        useMouseEvents: true,
 
-    /*
-        Automatically size the parent
-        according to the book.
-    */
+        mobileScrollSupport: false,
 
-    autoSize: true,
+        disableFlipByClick: false,
 
+        swipeDistance: 30
+    });
 
-    /*
-        First page behaves like a cover.
+    const imagePromises = pages.map(function (src) {
 
-        This is important because you wanted
-        the bulletin to start as ONE page,
-        not immediately as a two-page spread.
-    */
+        return new Promise(function (resolve, reject) {
 
-    showCover: true,
+            const img = new Image();
 
+            img.onload = resolve;
 
-    /*
-        Allow portrait mode on narrow screens.
-    */
+            img.onerror = function () {
+                reject(new Error("Could not load: " + src));
+            };
 
-    usePortrait: true,
+            img.src = src;
+        });
 
+    });
 
-    /*
-        REALISTIC PAGE SHADOW
-    */
+    Promise.all(imagePromises)
+        .then(function () {
 
-    drawShadow: true,
+            console.log("All pages loaded.");
 
-    maxShadowOpacity: 0.45,
+            pageFlip.loadFromImages(pages);
 
+        })
+        .catch(function (error) {
 
-    /*
-        Slightly slower page turn.
+            console.error(
+                "Page loading error:",
+                error
+            );
 
-        Default is 1000 ms.
-    */
+        });
 
-    flippingTime: 1400,
-
-
-    /*
-        Mouse + touch interaction.
-    */
-
-    useMouseEvents: true,
-
-    mobileScrollSupport: false,
-
-
-    /*
-        Clicking the page is allowed
-        to trigger the page turn.
-    */
-
-    disableFlipByClick: false,
-
-
-    /*
-        Minimum swipe distance on touch screens.
-    */
-
-    swipeDistance: 30
-});
-
-
-/*
-==================================================
-LOAD THE BULLETIN
-==================================================
-*/
-
-pageFlip.loadFromImages(pages);
-
-
-/*
-==================================================
-OPTIONAL: HANDLE PAGE CHANGES
-==================================================
-
-This doesn't change the animation.
-It simply keeps the browser aware that
-the book has changed pages.
-*/
-
-
-pageFlip.on("flip", function(event) {
-
-    document.title =
-        "Bi-monthly Bulletin — Page " +
-        (event.data + 1);
 });
