@@ -12,44 +12,51 @@ body {
 
 body {
     background: #eeeae2;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     overflow: hidden;
 }
 
-/* Main bulletin area */
 .book {
     position: relative;
 
     width: min(82vw, 760px);
     aspect-ratio: 210 / 297;
 
-    perspective: 2200px;
+    perspective: 2500px;
 
     cursor: pointer;
 }
 
-/* Every bulletin page */
+/* PAGE */
+
 .page {
     position: absolute;
+
     inset: 0;
 
     width: 100%;
     height: 100%;
 
     transform-origin: left center;
+
     transform-style: preserve-3d;
 
     transition:
-        transform 1s cubic-bezier(0.65, 0.05, 0.36, 1);
+        transform 1.15s cubic-bezier(0.22, 0.61, 0.36, 1);
 
     backface-visibility: hidden;
 
     overflow: hidden;
+
+    border-radius: 1px;
 }
 
-/* Page image */
+/* IMAGE */
+
 .page img {
     display: block;
 
@@ -67,33 +74,70 @@ body {
     pointer-events: none;
 }
 
-/* Turned page */
+/* TURNED PAGE */
+
 .page.flipped {
-    transform: rotateY(-180deg);
+    transform:
+        rotateY(-180deg)
+        translateZ(1px);
 }
 
-/* Soft shadow during page turn */
-.page::after {
+/* PAGE SHADOW */
+
+.page::before {
     content: "";
 
     position: absolute;
-    inset: 0;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    width: 18%;
 
     background:
         linear-gradient(
             90deg,
-            rgba(0,0,0,0.18),
-            transparent 35%,
-            rgba(0,0,0,0.08)
+            transparent,
+            rgba(0, 0, 0, 0.12)
         );
 
     opacity: 0;
 
     pointer-events: none;
 
-    transition: opacity 0.5s ease;
+    transition:
+        opacity 0.45s ease;
+}
+
+/* Shadow becomes visible while page turns */
+
+.page.flipped::before {
+    opacity: 1;
+}
+
+/* Extra depth */
+
+.page::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 3px;
+
+    background: rgba(0, 0, 0, 0.08);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.3s ease;
 }
 
 .page.flipped::after {
-    opacity: 0.7;
+    opacity: 1;
 }
