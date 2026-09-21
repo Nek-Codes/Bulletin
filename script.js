@@ -1,6 +1,7 @@
 const pages = [
     "Pages/Bi-monthly Bulletin.png",
     "Pages/contents.png"
+    "Pages/Motto.png"
 ];
 
 const book = document.getElementById("book");
