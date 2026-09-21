@@ -1,4 +1,3 @@
-```javascript
 /*
 ==================================================
 BULLETIN PAGES
@@ -151,4 +150,3 @@ pageFlip.on("flip", function(event) {
         "Bi-monthly Bulletin — Page " +
         (event.data + 1);
 });
-```
