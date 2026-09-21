@@ -1,87 +1,71 @@
-/* =================================
-   BULLETIN PAGES
-================================= */
-
 const pages = [
     "Pages/Bi-monthly Bulletin.png",
     "Pages/contents.png"
 ];
 
-
-/* =================================
-   BOOK
-================================= */
-
 const book = document.getElementById("book");
 
-const nextButton = document.getElementById("next");
-const previousButton = document.getElementById("previous");
-
 let currentPage = 0;
+let pageElements = [];
 
 
-/* =================================
-   CREATE ALL PAGES
-================================= */
-
+/* Create all pages */
 pages.forEach((image, index) => {
 
     const page = document.createElement("div");
 
     page.className = "page";
 
-    /*
-       Higher z-index = page is on top
-    */
-
     page.style.zIndex = pages.length - index;
 
-    page.innerHTML = `
-        <img
-            src="${image}"
-            alt="Bulletin page ${index + 1}"
-        >
-    `;
+    const img = document.createElement("img");
 
-    book.insertBefore(page, nextButton);
+    img.src = image;
+    img.alt = "Bulletin page " + (index + 1);
 
+    page.appendChild(img);
+
+    book.appendChild(page);
+
+    pageElements.push(page);
 });
 
 
-/* Get all pages */
+/* Click left/right side */
+book.addEventListener("click", function(event) {
 
-const pageElements = document.querySelectorAll(".page");
+    const rect = book.getBoundingClientRect();
+
+    const clickX = event.clientX - rect.left;
+
+    const middle = rect.width / 2;
 
 
-/* =================================
-   NEXT PAGE
-================================= */
+    /* RIGHT SIDE → NEXT PAGE */
 
-nextButton.addEventListener("click", () => {
+    if (clickX > middle) {
 
-    if (currentPage >= pageElements.length - 1) {
-        return;
+        if (currentPage < pageElements.length - 1) {
+
+            pageElements[currentPage].classList.add("flipped");
+
+            currentPage++;
+        }
+
     }
 
-    pageElements[currentPage].classList.add("flipped");
 
-    currentPage++;
+    /* LEFT SIDE → PREVIOUS PAGE */
 
-});
+    else {
 
+        if (currentPage > 0) {
 
-/* =================================
-   PREVIOUS PAGE
-================================= */
+            currentPage--;
 
-previousButton.addEventListener("click", () => {
+            pageElements[currentPage].classList.remove("flipped");
+        }
 
-    if (currentPage <= 0) {
-        return;
     }
-
-    currentPage--;
-
-    pageElements[currentPage].classList.remove("flipped");
 
 });
