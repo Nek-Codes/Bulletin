@@ -1,10 +1,8 @@
-const book = document.getElementById("book");
-
-
+```javascript
 /*
-    YOUR BULLETIN PAGES
-
-    Add more images here later.
+==================================================
+BULLETIN PAGES
+==================================================
 */
 
 const pages = [
@@ -14,16 +12,28 @@ const pages = [
 
 
 /*
-    CREATE PAGE FLIP ENGINE
+==================================================
+BOOK ELEMENT
+==================================================
+*/
+
+const book = document.getElementById("book");
+
+
+/*
+==================================================
+CREATE STPAGEFLIP
+==================================================
 */
 
 const pageFlip = new St.PageFlip(book, {
 
     /*
-        Base page dimensions.
+        Base A4-style portrait proportions.
 
-        These are proportions rather than
-        the final screen size.
+        These are the reference dimensions.
+        "stretch" allows the engine to resize
+        them for the actual screen.
     */
 
     width: 700,
@@ -31,38 +41,49 @@ const pageFlip = new St.PageFlip(book, {
 
 
     /*
-        Allow the book to resize with
-        the screen.
+        RESPONSIVE MODE
+
+        The book stretches to its parent
+        while respecting the limits below.
     */
 
     size: "stretch",
 
-    minWidth: 300,
+    minWidth: 280,
     maxWidth: 760,
 
-    minHeight: 424,
+    minHeight: 396,
     maxHeight: 1075,
 
 
     /*
-        IMPORTANT
+        Automatically size the parent
+        according to the book.
+    */
 
-        First page behaves as a cover
-        and is displayed by itself.
+    autoSize: true,
+
+
+    /*
+        First page behaves like a cover.
+
+        This is important because you wanted
+        the bulletin to start as ONE page,
+        not immediately as a two-page spread.
     */
 
     showCover: true,
 
 
     /*
-        Keep portrait behaviour.
+        Allow portrait mode on narrow screens.
     */
 
     usePortrait: true,
 
 
     /*
-        Realistic page shadow.
+        REALISTIC PAGE SHADOW
     */
 
     drawShadow: true,
@@ -71,25 +92,16 @@ const pageFlip = new St.PageFlip(book, {
 
 
     /*
-        Slower page turn.
+        Slightly slower page turn.
 
-        Default = 1000 ms.
-        We're using 1600 ms.
+        Default is 1000 ms.
     */
 
-    flippingTime: 1600,
+    flippingTime: 1400,
 
 
     /*
-        Allow clicking the page
-        to turn it.
-    */
-
-    disableFlipByClick: false,
-
-
-    /*
-        Mouse/touch interaction.
+        Mouse + touch interaction.
     */
 
     useMouseEvents: true,
@@ -98,16 +110,45 @@ const pageFlip = new St.PageFlip(book, {
 
 
     /*
-        Automatically size the
-        flipbook to its container.
+        Clicking the page is allowed
+        to trigger the page turn.
     */
 
-    autoSize: true
+    disableFlipByClick: false,
+
+
+    /*
+        Minimum swipe distance on touch screens.
+    */
+
+    swipeDistance: 30
 });
 
 
 /*
-    LOAD ALL BULLETIN IMAGES
+==================================================
+LOAD THE BULLETIN
+==================================================
 */
 
 pageFlip.loadFromImages(pages);
+
+
+/*
+==================================================
+OPTIONAL: HANDLE PAGE CHANGES
+==================================================
+
+This doesn't change the animation.
+It simply keeps the browser aware that
+the book has changed pages.
+*/
+
+
+pageFlip.on("flip", function(event) {
+
+    document.title =
+        "Bi-monthly Bulletin — Page " +
+        (event.data + 1);
+});
+```
