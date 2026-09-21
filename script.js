@@ -23,8 +23,6 @@ const book = document.getElementById("book");
 
 window.addEventListener("load", function () {
 
-    /* Check that StPageFlip loaded */
-
     if (typeof St === "undefined" || !St.PageFlip) {
 
         console.error("StPageFlip library did not load.");
@@ -34,91 +32,49 @@ window.addEventListener("load", function () {
 
 
     /* ==================================================
-       CREATE PAGE FLIP ENGINE
+       CREATE PAGE FLIP
     ================================================== */
 
     const pageFlip = new St.PageFlip(book, {
 
-        /*
-            A4 portrait proportions
-        */
-
         width: 700,
         height: 990,
 
-
-        /*
-            Keep fixed page dimensions
-        */
-
         size: "fixed",
 
-
         /*
-            Every image is a single page.
-            No special cover spread.
-        */
-
-        showCover: false,
-
-
-        /*
-            Portrait mode = one page at a time
+            Keep the book in portrait mode.
         */
 
         usePortrait: true,
 
-
         /*
-            Start at the cover
+            Do NOT use the special cover mode.
+            Every image is a normal single page.
         */
+
+        showCover: false,
 
         startPage: 0,
-
-
-        /*
-            Page shadow
-        */
 
         drawShadow: true,
 
         maxShadowOpacity: 0.45,
 
-
-        /*
-            Page-turn speed
-        */
-
-        flippingTime: 1400,
-
-
-        /*
-            Mouse and touch
-        */
+        flippingTime: 1000,
 
         useMouseEvents: true,
 
         mobileScrollSupport: false,
 
-
-        /*
-            Clicking the page turns it
-        */
-
         disableFlipByClick: false,
 
-
-        /*
-            Swipe sensitivity
-        */
-
         swipeDistance: 30
-
     });
 
 
     /* ==================================================
-       PRELOAD ALL IMAGES
+       PRELOAD IMAGES
     ================================================== */
 
     const imagePromises = pages.map(function (src) {
@@ -149,7 +105,7 @@ window.addEventListener("load", function () {
 
 
     /* ==================================================
-       LOAD BOOK AFTER ALL IMAGES ARE READY
+       LOAD BOOK
     ================================================== */
 
     Promise.all(imagePromises)
@@ -173,7 +129,7 @@ window.addEventListener("load", function () {
 
 
     /* ==================================================
-       PAGE CHANGE LOG
+       PAGE CHANGE
     ================================================== */
 
     pageFlip.on("flip", function (event) {
