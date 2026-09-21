@@ -12,172 +12,81 @@ body {
 
 body {
     background: #eeeae2;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     overflow: hidden;
 }
 
-
-/* =========================
-   BOOK
-========================= */
-
 .book {
     position: relative;
-
     width: min(90vw, 900px);
     height: min(90vh, 1200px);
-
-    perspective: 2500px;
+    perspective: 2000px;
 }
-
-
-/* =========================
-   PAGE CONTAINER
-========================= */
 
 .page-container {
-    position: absolute;
-
+    position: relative;
     width: 100%;
     height: 100%;
-
-    top: 0;
-    left: 0;
-
-    transform-style: preserve-3d;
 }
-
-
-/* =========================
-   PAGE
-========================= */
 
 .sheet {
     position: absolute;
+    inset: 0;
 
-    width: 100%;
-    height: 100%;
-
-    top: 0;
-    left: 0;
+    background: white;
 
     transform-origin: left center;
     transform-style: preserve-3d;
 
-    transition:
-        transform 1s cubic-bezier(.65, .05, .36, 1);
+    transition: transform 1s ease;
 
-    background: white;
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
 }
-
-
-/* Page turned */
 
 .sheet.flipped {
     transform: rotateY(-180deg);
 }
 
-
-/* =========================
-   PAGE FACES
-========================= */
-
 .page {
     position: absolute;
-
-    width: 100%;
-    height: 100%;
-
-    top: 0;
-    left: 0;
+    inset: 0;
 
     background: white;
 
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-
-    overflow: hidden;
-
-    transform-style: preserve-3d;
 }
-
-
-/* Front */
-
-.front {
-    transform: rotateY(0deg);
-}
-
-
-/* Back */
-
-.back {
-    transform: rotateY(180deg);
-}
-
-
-/* =========================
-   PAGE IMAGE
-========================= */
 
 .page img {
     width: 100%;
     height: 100%;
 
-    display: block;
-
     object-fit: contain;
+
+    display: block;
 
     user-select: none;
     -webkit-user-drag: none;
 }
 
-
-/* =========================
-   CLICK AREAS
-========================= */
-
 .click-zone {
     position: absolute;
-
     top: 0;
-
     height: 100%;
-
     z-index: 100;
-
-    cursor: pointer;
 }
-
-
-/* Left half */
 
 .click-zone.left {
     left: 0;
-
-    width: 30%;
+    width: 35%;
 }
-
-
-/* Right half */
 
 .click-zone.right {
     right: 0;
-
-    width: 30%;
+    width: 35%;
 }
-
-
-/* =========================
-   MOBILE
-========================= */
 
 @media (max-width: 600px) {
 
@@ -186,9 +95,7 @@ body {
         height: 90vh;
     }
 
-    .click-zone.left,
-    .click-zone.right {
-        width: 35%;
+    .click-zone {
+        width: 40%;
     }
-
 }
