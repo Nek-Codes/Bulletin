@@ -31,47 +31,41 @@ body {
     width: min(82vw, 760px);
     aspect-ratio: 210 / 297;
 
-    perspective: 3000px;
+    perspective: 2500px;
 
     cursor: pointer;
+
+    overflow: visible;
 }
 
 
 /* =========================================
-   PAGE
+   PAGE LAYERS
 ========================================= */
 
-.page {
+.page-layer {
     position: absolute;
 
     inset: 0;
 
     width: 100%;
     height: 100%;
+}
 
-    /*
-       IMPORTANT:
-       The page turns from the RIGHT edge,
-       like a real book.
-    */
-    transform-origin: right center;
+
+/* Page underneath */
+
+.page-back {
+    z-index: 1;
+}
+
+
+/* Page currently being turned */
+
+.page-front {
+    z-index: 2;
 
     transform-style: preserve-3d;
-
-    transition:
-        transform 1.8s cubic-bezier(
-            0.45,
-            0.05,
-            0.25,
-            1
-        );
-
-    backface-visibility: hidden;
-
-    overflow: hidden;
-
-    border: none;
-    outline: none;
 }
 
 
@@ -79,155 +73,105 @@ body {
    PAGE IMAGE
 ========================================= */
 
-.page img {
-    display: block;
+.page-image {
+    position: absolute;
+
+    inset: 0;
 
     width: 100%;
     height: 100%;
 
     object-fit: cover;
 
-    border: none;
-    outline: none;
+    display: block;
 
     user-select: none;
-    -webkit-user-drag: none;
-
     pointer-events: none;
+
+    border: none;
+    outline: none;
 }
 
 
 /* =========================================
-   PAGE EDGE LIGHT
+   CURL STRIPS
 ========================================= */
 
-.page::before {
+.page-strip {
+    position: absolute;
+
+    top: 0;
+
+    height: 100%;
+
+    background-repeat: no-repeat;
+    background-size: 2400% 100%;
+
+    transform-style: preserve-3d;
+
+    transform-origin: left center;
+
+    backface-visibility: hidden;
+
+    will-change: transform;
+
+    overflow: hidden;
+
+    /*
+       Small shadow between the curling pieces.
+       This helps create the depth in the screenshot.
+    */
+    box-shadow:
+        2px 0 5px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================
+   DARK EDGE OF CURL
+========================================= */
+
+.page-strip::after {
     content: "";
 
     position: absolute;
 
-    top: 0;
-    right: 0;
-
-    width: 45%;
-    height: 100%;
+    inset: 0;
 
     pointer-events: none;
-
-    z-index: 5;
 
     background:
         linear-gradient(
             90deg,
-            transparent 0%,
-            rgba(255,255,255,0.02) 20%,
-            rgba(255,255,255,0.12) 50%,
-            rgba(255,255,255,0.42) 78%,
-            rgba(255,255,255,0.65) 100%
+            transparent 45%,
+            rgba(0, 0, 0, 0.08) 75%,
+            rgba(0, 0, 0, 0.20) 100%
         );
 
-    opacity: 0;
-
-    transform-origin: right center;
-
-    transition:
-        opacity 0.9s ease,
-        transform 1.8s cubic-bezier(
-            0.45,
-            0.05,
-            0.25,
-            1
-        );
+    opacity: 0.6;
 }
 
 
 /* =========================================
-   DEEP PAGE SHADOW
+   PAGE TURN SHADOW
 ========================================= */
 
-.page::after {
-    content: "";
-
+.turn-shadow {
     position: absolute;
 
-    top: -2%;
-    right: -3%;
-
-    width: 50%;
-    height: 104%;
+    inset: 0;
 
     pointer-events: none;
 
-    z-index: 6;
+    z-index: 20;
 
     background:
         radial-gradient(
-            ellipse at right center,
-            rgba(0,0,0,0.30) 0%,
-            rgba(0,0,0,0.16) 25%,
-            rgba(0,0,0,0.06) 50%,
-            transparent 72%
+            ellipse at 80% 50%,
+            rgba(0, 0, 0, 0.28),
+            transparent 45%
         );
-
-    filter: blur(8px);
 
     opacity: 0;
 
-    transform-origin: right center;
-
-    transition:
-        opacity 0.9s ease,
-        transform 1.8s cubic-bezier(
-            0.45,
-            0.05,
-            0.25,
-            1
-        );
-}
-
-
-/* =========================================
-   FLIPPING PAGE
-========================================= */
-
-.page.flipped {
-
-    /*
-       Turn toward the LEFT.
-       This is the important change.
-    */
-    transform:
-        rotateY(180deg)
-        rotateX(2deg)
-        rotateZ(-0.8deg);
-}
-
-
-/* =========================================
-   CURLING LIGHT
-========================================= */
-
-.page.flipped::before {
-
-    opacity: 1;
-
-    transform:
-        translateX(-8%)
-        scaleX(1.25)
-        skewY(-3deg);
-}
-
-
-/* =========================================
-   CURLING SHADOW
-========================================= */
-
-.page.flipped::after {
-
-    opacity: 0.95;
-
-    transform:
-        translateX(-12%)
-        scaleX(1.35)
-        skewY(3deg);
+    transition: opacity 0.2s linear;
 }
