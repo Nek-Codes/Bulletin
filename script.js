@@ -40,9 +40,7 @@ window.addEventListener("load", function () {
     const pageFlip = new St.PageFlip(book, {
 
         /*
-            Base page size.
-
-            These proportions are close to A4 portrait.
+            A4 portrait proportions
         */
 
         width: 700,
@@ -50,42 +48,36 @@ window.addEventListener("load", function () {
 
 
         /*
-            Fixed page geometry.
-
-            CSS scales the whole book to fit
-            the available screen.
+            Keep fixed page dimensions
         */
 
         size: "fixed",
 
 
         /*
-            IMPORTANT:
-
-            Every image is treated as a normal page.
-            This prevents StPageFlip from creating
-            the unwanted extra cover/facing page.
+            Every image is a single page.
+            No special cover spread.
         */
 
-        showCover: true,
+        showCover: false,
 
 
         /*
-            Portrait behaviour.
+            Portrait mode = one page at a time
         */
 
-        usePortrait: false,
+        usePortrait: true,
 
 
         /*
-            Start from the first image.
+            Start at the cover
         */
 
         startPage: 0,
 
 
         /*
-            Realistic shadow.
+            Page shadow
         */
 
         drawShadow: true,
@@ -94,14 +86,14 @@ window.addEventListener("load", function () {
 
 
         /*
-            Slower page turn.
+            Page-turn speed
         */
 
         flippingTime: 1400,
 
 
         /*
-            Mouse and touch controls.
+            Mouse and touch
         */
 
         useMouseEvents: true,
@@ -110,14 +102,14 @@ window.addEventListener("load", function () {
 
 
         /*
-            Clicking the page turns it.
+            Clicking the page turns it
         */
 
         disableFlipByClick: false,
 
 
         /*
-            Touch swipe distance.
+            Swipe sensitivity
         */
 
         swipeDistance: 30
@@ -135,11 +127,9 @@ window.addEventListener("load", function () {
 
             const img = new Image();
 
-
             img.onload = function () {
                 resolve();
             };
-
 
             img.onerror = function () {
 
@@ -150,7 +140,6 @@ window.addEventListener("load", function () {
                 );
 
             };
-
 
             img.src = src;
 
