@@ -14,80 +14,57 @@ body {
     background: #eeeae2;
 
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    /*
-       Prevent the browser from creating
-       unwanted scrollbars around the book.
-    */
     overflow: hidden;
-
-    /*
-       Safe area for phones with notches.
-    */
-    padding:
-        env(safe-area-inset-top)
-        env(safe-area-inset-right)
-        env(safe-area-inset-bottom)
-        env(safe-area-inset-left);
 }
 
 
 /*
 ==================================================
-BOOK CONTAINER
+RESPONSIVE BOOK AREA
 ==================================================
 */
 
 #book {
     /*
-       The library will resize this container.
-       We give it the largest sensible area
-       available on the current screen.
+        A4 portrait ratio:
+
+        210 / 297 = 0.707
+
+        The book will never become larger
+        than the available screen.
     */
 
-    width: min(92vw, 760px);
-    height: min(92vh, 1075px);
+    width: min(88vw, 700px);
+    height: min(90vh, 990px);
 
-    /*
-       Keep the bulletin centered.
-    */
-
-    margin: auto;
+    aspect-ratio: 700 / 990;
 
     position: relative;
 
-    /*
-       Never let the container itself
-       create a visible white frame.
-    */
-
-    background: transparent;
+    margin: auto;
 }
 
 
 /*
 ==================================================
-STPAGEFLIP INTERNAL CANVAS
+STPAGEFLIP CANVAS
 ==================================================
 */
 
 #book canvas {
     display: block;
 
-    /*
-       Do not allow the canvas to create
-       an unexpected inline gap.
-    */
-
-    vertical-align: middle;
+    width: 100% !important;
+    height: 100% !important;
 }
 
 
 /*
 ==================================================
-MOBILE
+SMALL PHONES
 ==================================================
 */
 
@@ -95,7 +72,9 @@ MOBILE
 
     #book {
         width: 94vw;
-        height: 94vh;
+        height: auto;
+
+        aspect-ratio: 700 / 990;
     }
 }
 
@@ -109,8 +88,9 @@ VERY SHORT SCREENS
 @media (max-height: 600px) {
 
     #book {
-        width: auto;
         height: 92vh;
-        max-width: 94vw;
+        width: auto;
+
+        aspect-ratio: 700 / 990;
     }
 }
