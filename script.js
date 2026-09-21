@@ -4,7 +4,7 @@
 
 const pages = [
     "Pages/Bi-monthly Bulletin.png",
-    "Pages/Page 2.png"
+    "Pages/content.png"
 ];
 
 
