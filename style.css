@@ -21,20 +21,10 @@ body {
 }
 
 #book {
-    width: min(92vw, 700px);
-    height: min(92vh, 990px);
-
     position: relative;
-}
 
-/* IMPORTANT:
-   Do NOT force canvas width/height here.
-   StPageFlip handles the canvas itself.
-*/
+    width: min(700px, 92vw);
+    height: min(990px, 92vh);
 
-@media (max-width: 600px) {
-    #book {
-        width: 94vw;
-        height: 94vh;
-    }
+    margin: 0 auto;
 }
