@@ -1,6 +1,6 @@
 const pages = [
     "Pages/Bi-monthly Bulletin.png",
-    "Pages/contents.png"
+    "Pages/contents.png",
     "Pages/Motto.png"
 ];
 
@@ -9,7 +9,7 @@ const book = document.getElementById("book");
 window.addEventListener("load", function () {
 
     if (typeof St === "undefined" || !St.PageFlip) {
-        console.error("StPageFlip library did not load.");
+        console.error("StPageFlip did not load.");
         return;
     }
 
@@ -32,17 +32,17 @@ window.addEventListener("load", function () {
 
         usePortrait: true,
 
+        startPage: 0,
+
         drawShadow: true,
         maxShadowOpacity: 0.45,
 
         flippingTime: 1400,
 
         useMouseEvents: true,
-
         mobileScrollSupport: false,
 
         disableFlipByClick: false,
-
         swipeDistance: 30
     });
 
@@ -66,17 +66,12 @@ window.addEventListener("load", function () {
     Promise.all(imagePromises)
         .then(function () {
 
-            console.log("All pages loaded.");
-
             pageFlip.loadFromImages(pages);
 
         })
         .catch(function (error) {
 
-            console.error(
-                "Page loading error:",
-                error
-            );
+            console.error("Image loading error:", error);
 
         });
 
