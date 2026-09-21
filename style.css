@@ -20,7 +20,7 @@ body {
 
 /* ==============================
    BOOK CONTAINER
-   Accounts for two facing pages (1400x990 aspect ratio)
+   Ratio 1400/990 accounts for the two-page spread (700px x 2)
 ============================== */
 #book {
     width: min(90vw, 1400px);
@@ -31,9 +31,16 @@ body {
 }
 
 /* ==============================
-   MOBILE & PORTRAIT SCREENS
+   MOBILE SCREENS
+   Switches back to single page aspect ratio
 ============================== */
 @media (max-width: 768px) {
+    #book {
+        width: 92vw;
+        height: auto;
+        aspect-ratio: 700 / 990;
+    }
+}
     #book {
         width: 92vw;
         height: auto;
