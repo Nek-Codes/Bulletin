@@ -1,50 +1,28 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Literary Club — Bi-Monthly Bulletin</title>
+    <title>Bi-monthly Bulletin</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <main class="bulletin-container">
+    <div class="book" id="book">
 
-        <!-- Bulletin -->
-        <div class="book" id="book">
-
-            <div class="page" id="page">
-                <img id="pageImage" src="Pages/Bi-monthly Bulletin.png" alt="Bulletin page">
-            </div>
-
+        <div class="page" id="page">
+            <img
+                id="pageImage"
+                src="Pages/Bi-monthly Bulletin.png"
+                alt="Bulletin page"
+            >
         </div>
 
-        <!-- Navigation -->
-        <div class="controls">
-
-            <button id="prevBtn" aria-label="Previous page">
-                ‹
-            </button>
-
-            <span id="pageNumber">
-                1 / 8
-            </span>
-
-            <button id="nextBtn" aria-label="Next page">
-                ›
-            </button>
-
-        </div>
-
-        <!-- Swipe hint -->
-        <div class="hint">
-            Swipe or use the arrows to turn the pages
-        </div>
-
-    </main>
+    </div>
 
     <script src="script.js"></script>
 
