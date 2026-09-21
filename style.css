@@ -20,18 +20,26 @@ body {
     overflow: hidden;
 }
 
+
+/* =========================================
+   BOOK
+========================================= */
+
 .book {
     position: relative;
 
     width: min(82vw, 760px);
     aspect-ratio: 210 / 297;
 
-    perspective: 2500px;
+    perspective: 3000px;
 
     cursor: pointer;
 }
 
-/* PAGE */
+
+/* =========================================
+   PAGE
+========================================= */
 
 .page {
     position: absolute;
@@ -41,21 +49,35 @@ body {
     width: 100%;
     height: 100%;
 
-    transform-origin: left center;
+    /*
+       IMPORTANT:
+       The page turns from the RIGHT edge,
+       like a real book.
+    */
+    transform-origin: right center;
 
     transform-style: preserve-3d;
 
     transition:
-        transform 1.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+        transform 1.8s cubic-bezier(
+            0.45,
+            0.05,
+            0.25,
+            1
+        );
 
     backface-visibility: hidden;
 
     overflow: hidden;
 
-    border-radius: 1px;
+    border: none;
+    outline: none;
 }
 
-/* IMAGE */
+
+/* =========================================
+   PAGE IMAGE
+========================================= */
 
 .page img {
     display: block;
@@ -74,15 +96,10 @@ body {
     pointer-events: none;
 }
 
-/* TURNED PAGE */
 
-.page.flipped {
-    transform:
-        rotateY(-180deg)
-        translateZ(1px);
-}
-
-/* PAGE SHADOW */
+/* =========================================
+   PAGE EDGE LIGHT
+========================================= */
 
 .page::before {
     content: "";
@@ -91,53 +108,126 @@ body {
 
     top: 0;
     right: 0;
-    bottom: 0;
 
-    width: 18%;
+    width: 45%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 5;
 
     background:
         linear-gradient(
             90deg,
-            transparent,
-            rgba(0, 0, 0, 0.12)
+            transparent 0%,
+            rgba(255,255,255,0.02) 20%,
+            rgba(255,255,255,0.12) 50%,
+            rgba(255,255,255,0.42) 78%,
+            rgba(255,255,255,0.65) 100%
         );
 
     opacity: 0;
 
-    pointer-events: none;
+    transform-origin: right center;
 
     transition:
-        opacity 0.45s ease;
+        opacity 0.9s ease,
+        transform 1.8s cubic-bezier(
+            0.45,
+            0.05,
+            0.25,
+            1
+        );
 }
 
-/* Shadow becomes visible while page turns */
 
-.page.flipped::before {
-    opacity: 1;
-}
-
-/* Extra depth */
+/* =========================================
+   DEEP PAGE SHADOW
+========================================= */
 
 .page::after {
     content: "";
 
     position: absolute;
 
-    top: 0;
-    bottom: 0;
-    left: 0;
+    top: -2%;
+    right: -3%;
 
-    width: 3px;
-
-    background: rgba(0, 0, 0, 0.08);
-
-    opacity: 0;
+    width: 50%;
+    height: 104%;
 
     pointer-events: none;
 
-    transition: opacity 0.3s ease;
+    z-index: 6;
+
+    background:
+        radial-gradient(
+            ellipse at right center,
+            rgba(0,0,0,0.30) 0%,
+            rgba(0,0,0,0.16) 25%,
+            rgba(0,0,0,0.06) 50%,
+            transparent 72%
+        );
+
+    filter: blur(8px);
+
+    opacity: 0;
+
+    transform-origin: right center;
+
+    transition:
+        opacity 0.9s ease,
+        transform 1.8s cubic-bezier(
+            0.45,
+            0.05,
+            0.25,
+            1
+        );
 }
 
-.page.flipped::after {
+
+/* =========================================
+   FLIPPING PAGE
+========================================= */
+
+.page.flipped {
+
+    /*
+       Turn toward the LEFT.
+       This is the important change.
+    */
+    transform:
+        rotateY(180deg)
+        rotateX(2deg)
+        rotateZ(-0.8deg);
+}
+
+
+/* =========================================
+   CURLING LIGHT
+========================================= */
+
+.page.flipped::before {
+
     opacity: 1;
+
+    transform:
+        translateX(-8%)
+        scaleX(1.25)
+        skewY(-3deg);
+}
+
+
+/* =========================================
+   CURLING SHADOW
+========================================= */
+
+.page.flipped::after {
+
+    opacity: 0.95;
+
+    transform:
+        translateX(-12%)
+        scaleX(1.35)
+        skewY(3deg);
 }
