@@ -20,10 +20,29 @@ body {
     overflow: hidden;
 }
 
+
+/* Bulletin container */
+
 #book {
     width: min(82vw, 760px);
     height: min(92vh, 1075px);
 
     max-width: 760px;
     max-height: 1075px;
+
+    position: relative;
+}
+
+
+/*
+   Remove any extra visual frame
+   around the flipbook itself.
+*/
+
+.stf__parent {
+    background: transparent !important;
+}
+
+.stf__block {
+    background: transparent !important;
 }
