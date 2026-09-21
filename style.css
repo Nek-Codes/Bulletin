@@ -12,19 +12,31 @@ body {
 
 body {
     background: #eeeae2;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
 }
 
+/* ==============================
+   BOOK CONTAINER
+   Accounts for two facing pages (1400x990 aspect ratio)
+============================== */
 #book {
+    width: min(90vw, 1400px);
+    height: min(85vh, 990px);
+    aspect-ratio: 1400 / 990;
     position: relative;
+    margin: auto;
+}
 
-    width: min(700px, 92vw);
-    height: min(990px, 92vh);
-
-    margin: 0 auto;
+/* ==============================
+   MOBILE & PORTRAIT SCREENS
+============================== */
+@media (max-width: 768px) {
+    #book {
+        width: 92vw;
+        height: auto;
+        aspect-ratio: 700 / 990; /* Reverts to single page aspect ratio on mobile */
+    }
 }
