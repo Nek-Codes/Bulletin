@@ -18,84 +18,82 @@ body {
     overflow: hidden;
 }
 
+/* Main bulletin area */
 .book {
     position: relative;
-    width: min(90vw, 900px);
-    height: min(90vh, 1200px);
-    perspective: 2000px;
+
+    width: min(82vw, 760px);
+    aspect-ratio: 210 / 297;
+
+    perspective: 2200px;
+
+    cursor: pointer;
 }
 
-.page-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.sheet {
-    position: absolute;
-    inset: 0;
-
-    background: white;
-
-    transform-origin: left center;
-    transform-style: preserve-3d;
-
-    transition: transform 1s ease;
-
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-}
-
-.sheet.flipped {
-    transform: rotateY(-180deg);
-}
-
+/* Every bulletin page */
 .page {
     position: absolute;
     inset: 0;
 
-    background: white;
-
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-.page img {
     width: 100%;
     height: 100%;
 
-    object-fit: contain;
+    transform-origin: left center;
+    transform-style: preserve-3d;
 
+    transition:
+        transform 1s cubic-bezier(0.65, 0.05, 0.36, 1);
+
+    backface-visibility: hidden;
+
+    overflow: hidden;
+}
+
+/* Page image */
+.page img {
     display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border: none;
+    outline: none;
 
     user-select: none;
     -webkit-user-drag: none;
+
+    pointer-events: none;
 }
 
-.click-zone {
+/* Turned page */
+.page.flipped {
+    transform: rotateY(-180deg);
+}
+
+/* Soft shadow during page turn */
+.page::after {
+    content: "";
+
     position: absolute;
-    top: 0;
-    height: 100%;
-    z-index: 100;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,0.18),
+            transparent 35%,
+            rgba(0,0,0,0.08)
+        );
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.5s ease;
 }
 
-.click-zone.left {
-    left: 0;
-    width: 35%;
-}
-
-.click-zone.right {
-    right: 0;
-    width: 35%;
-}
-
-@media (max-width: 600px) {
-
-    .book {
-        width: 94vw;
-        height: 90vh;
-    }
-
-    .click-zone {
-        width: 40%;
-    }
+.page.flipped::after {
+    opacity: 0.7;
 }
