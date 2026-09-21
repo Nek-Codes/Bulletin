@@ -12,38 +12,19 @@ body {
 
 body {
     background: #eeeae2;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     overflow: hidden;
 }
 
-/* ==============================
-   BOOK CONTAINER
-   Ratio 1400/990 accounts for the two-page spread (700px x 2)
-============================== */
 #book {
-    width: min(90vw, 1400px);
-    height: min(85vh, 990px);
-    aspect-ratio: 1400 / 990;
     position: relative;
-    margin: auto;
-}
 
-/* ==============================
-   MOBILE SCREENS
-   Switches back to single page aspect ratio
-============================== */
-@media (max-width: 768px) {
-    #book {
-        width: 92vw;
-        height: auto;
-        aspect-ratio: 700 / 990;
-    }
-}
-    #book {
-        width: 92vw;
-        height: auto;
-        aspect-ratio: 700 / 990; /* Reverts to single page aspect ratio on mobile */
-    }
+    width: min(700px, 92vw);
+    height: min(990px, 92vh);
+
+    margin: 0 auto;
 }
