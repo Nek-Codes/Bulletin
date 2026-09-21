@@ -1,29 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
+const pages = [
+    "Pages/Bi-monthly Bulletin.png",
+    "Pages/contents.png"
+];
 
-<head>
+const book = document.getElementById("book");
 
-    <meta charset="UTF-8">
+window.addEventListener("load", function () {
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    if (typeof St === "undefined" || !St.PageFlip) {
+        console.error("StPageFlip library did not load.");
+        return;
+    }
 
-    <title>Bi-monthly Bulletin</title>
+    const pageFlip = new St.PageFlip(book, {
 
-    <link rel="stylesheet" href="style.css">
+        width: 700,
+        height: 990,
 
-</head>
+        size: "stretch",
 
-<body>
+        minWidth: 280,
+        maxWidth: 700,
 
-    <div id="book"></div>
+        minHeight: 396,
+        maxHeight: 990,
 
-    <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+        autoSize: true,
 
-    <script src="script.js"></script>
+        showCover: true,
 
-</body>
+        usePortrait: true,
 
-</html>
+        drawShadow: true,
+        maxShadowOpacity: 0.45,
+
+        flippingTime: 1400,
+
+        useMouseEvents: true,
+
+        mobileScrollSupport: false,
+
+        disableFlipByClick: false,
+
+        swipeDistance: 30
+    });
+
+    const imagePromises = pages.map(function (src) {
+
+        return new Promise(function (resolve, reject) {
+
+            const img = new Image();
+
+            img.onload = resolve;
+
+            img.onerror = function () {
+                reject(new Error("Could not load: " + src));
+            };
+
+            img.src = src;
+        });
+
+    });
+
+    Promise.all(imagePromises)
+        .then(function () {
+
+            console.log("All pages loaded.");
+
+            pageFlip.loadFromImages(pages);
+
+        })
+        .catch(function (error) {
+
+            console.error(
+                "Page loading error:",
+                error
+            );
+
+        });
+
+});
