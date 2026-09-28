@@ -3,192 +3,14 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Bulletin | Literary Club</title>
+    <title>Bulletin | Literary Club</title>
 
-<style>
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-}
-
-body {
-    background: #f4f0e7;
-    font-family: Georgia, "Times New Roman", serif;
-
-    display: flex;
-    flex-direction: column;
-
-    overflow: hidden;
-}
-
-
-/* =========================================================
-   NAVIGATION
-========================================================= */
-
-.navbar {
-    height: 64px;
-    width: 100%;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    padding: 0 30px;
-
-    background: #f8f5ed;
-
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-
-    position: relative;
-    z-index: 10;
-}
-
-
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-}
-
-
-.nav-logo {
-    width: 34px;
-    height: 34px;
-
-    object-fit: contain;
-}
-
-
-.nav-brand {
-    font-size: 18px;
-    color: #222;
-}
-
-
-.nav-menu {
-    display: flex;
-    align-items: center;
-    gap: 29px;
-}
-
-
-.nav-menu a {
-    color: #292929;
-
-    text-decoration: none;
-
-    font-size: 15px;
-
-    transition: opacity 0.2s ease;
-}
-
-
-.nav-menu a:hover {
-    opacity: 0.55;
-}
-
-
-/* =========================================================
-   PDF VIEWER
-========================================================= */
-
-.viewer {
-    flex: 1;
-
-    width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 12px;
-
-    background: #e8e4da;
-}
-
-
-.viewer iframe {
-    width: 100%;
-    height: 100%;
-
-    border: none;
-
-    background: white;
-
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 800px) {
-
-    .navbar {
-        height: 58px;
-
-        padding: 0 16px;
-    }
-
-
-    .nav-brand {
-        font-size: 16px;
-    }
-
-
-    .nav-menu {
-        gap: 14px;
-    }
-
-
-    .nav-menu a {
-        font-size: 12px;
-    }
-
-
-    .viewer {
-        padding: 0;
-    }
-
-
-    .viewer iframe {
-        box-shadow: none;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width: 450px) {
-
-    .nav-menu a:first-child {
-        display: none;
-    }
-
-}
-
-</style>
+    <link rel="stylesheet" href="style.css">
 
 </head>
-
 
 <body>
 
@@ -201,15 +23,19 @@ body {
 
     <div class="nav-left">
 
-        <img
-            src="../Home/Club logo.png"
-            class="nav-logo"
-            alt="Literary Club Logo"
-        >
+        <a href="../index.html" class="brand-link">
 
-        <span class="nav-brand">
-            Literary Club
-        </span>
+            <img
+                src="../Home/Club logo.png"
+                class="nav-logo"
+                alt="Literary Club Logo"
+            >
+
+            <span class="nav-brand">
+                Literary Club
+            </span>
+
+        </a>
 
     </div>
 
@@ -231,18 +57,276 @@ body {
 
 
 <!-- =====================================================
-     PDF
+     BULLETIN READER
 ===================================================== -->
 
-<main class="viewer">
+<main class="reader">
 
-    <iframe
-        src="bulletin.pdf"
-        title="Literary Club Bi-Monthly Bulletin"
-    >
-    </iframe>
+
+    <!-- PAGE -->
+
+    <div class="page-container">
+
+        <img
+            id="bulletinPage"
+            src=""
+            alt="Bulletin Page"
+        >
+
+    </div>
+
+
+    <!-- CONTROLS -->
+
+    <div class="controls">
+
+
+        <button
+            id="previousButton"
+            class="control-button"
+            aria-label="Previous page"
+        >
+            ←
+        </button>
+
+
+        <div class="page-counter">
+
+            <span id="currentPage">
+                01
+            </span>
+
+            <span class="separator">
+                /
+            </span>
+
+            <span id="totalPages">
+                01
+            </span>
+
+        </div>
+
+
+        <button
+            id="nextButton"
+            class="control-button"
+            aria-label="Next page"
+        >
+            →
+        </button>
+
+
+    </div>
+
 
 </main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="pages.js"></script>
+
+
+<script>
+
+let currentPageIndex = 0;
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const bulletinPage =
+    document.getElementById("bulletinPage");
+
+const previousButton =
+    document.getElementById("previousButton");
+
+const nextButton =
+    document.getElementById("nextButton");
+
+const currentPage =
+    document.getElementById("currentPage");
+
+const totalPages =
+    document.getElementById("totalPages");
+
+
+/* =========================================================
+   LOAD PAGE
+========================================================= */
+
+function loadPage(index) {
+
+    if (pages.length === 0) {
+        return;
+    }
+
+
+    currentPageIndex = index;
+
+
+    bulletinPage.src =
+        "pages/" + pages[currentPageIndex];
+
+
+    const pageNumber =
+        currentPageIndex + 1;
+
+
+    currentPage.textContent =
+        String(pageNumber).padStart(2, "0");
+
+
+    totalPages.textContent =
+        String(pages.length).padStart(2, "0");
+
+
+    previousButton.disabled =
+        currentPageIndex === 0;
+
+
+    nextButton.disabled =
+        currentPageIndex === pages.length - 1;
+
+
+    /*
+       Update browser URL without reloading.
+       Example:
+       bulletin/index.html?page=5
+    */
+
+    const newUrl =
+        window.location.pathname +
+        "?page=" +
+        pageNumber;
+
+    window.history.replaceState(
+        {},
+        "",
+        newUrl
+    );
+
+}
+
+
+/* =========================================================
+   NEXT PAGE
+========================================================= */
+
+function nextPage() {
+
+    if (currentPageIndex < pages.length - 1) {
+
+        loadPage(currentPageIndex + 1);
+
+    }
+
+}
+
+
+/* =========================================================
+   PREVIOUS PAGE
+========================================================= */
+
+function previousPage() {
+
+    if (currentPageIndex > 0) {
+
+        loadPage(currentPageIndex - 1);
+
+    }
+
+}
+
+
+/* =========================================================
+   BUTTON EVENTS
+========================================================= */
+
+nextButton.addEventListener(
+    "click",
+    nextPage
+);
+
+
+previousButton.addEventListener(
+    "click",
+    previousPage
+);
+
+
+/* =========================================================
+   KEYBOARD CONTROLS
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    function(event) {
+
+        if (event.key === "ArrowRight") {
+
+            nextPage();
+
+        }
+
+
+        if (event.key === "ArrowLeft") {
+
+            previousPage();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   OPEN SPECIFIC PAGE FROM URL
+========================================================= */
+
+function getStartingPage() {
+
+    const urlParams =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const page =
+        parseInt(
+            urlParams.get("page")
+        );
+
+
+    if (
+        !isNaN(page) &&
+        page >= 1 &&
+        page <= pages.length
+    ) {
+
+        return page - 1;
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =========================================================
+   START
+========================================================= */
+
+loadPage(
+    getStartingPage()
+);
+
+</script>
 
 
 </body>
