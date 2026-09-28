@@ -129,7 +129,6 @@
 
 <script src="pages.js"></script>
 
-
 <script>
 
 let currentPageIndex = 0;
@@ -173,17 +172,43 @@ function loadPage(index) {
         "pages/" + pages[currentPageIndex];
 
 
-    const pageNumber =
-        currentPageIndex + 1;
+    /*
+       Page numbering:
+
+       Index 0 = Cover = 00
+       Index 1 = 01.jpg = 01
+       Index 2 = 02.jpg = 02
+       etc.
+    */
+
+    let pageNumber;
+
+    if (currentPageIndex === 0) {
+
+        pageNumber = 0;
+
+    } else {
+
+        pageNumber = currentPageIndex;
+
+    }
 
 
     currentPage.textContent =
         String(pageNumber).padStart(2, "0");
 
 
-    totalPages.textContent =
-        String(pages.length).padStart(2, "0");
+    /*
+       Total excludes the cover
+    */
 
+    totalPages.textContent =
+        String(pages.length - 1).padStart(2, "0");
+
+
+    /*
+       Disable buttons
+    */
 
     previousButton.disabled =
         currentPageIndex === 0;
@@ -194,15 +219,23 @@ function loadPage(index) {
 
 
     /*
-       Update browser URL without reloading.
-       Example:
-       bulletin/index.html?page=5
+       Update URL
+
+       Cover:
+       ?page=0
+
+       Page 01:
+       ?page=1
+
+       Page 02:
+       ?page=2
     */
 
     const newUrl =
         window.location.pathname +
         "?page=" +
         pageNumber;
+
 
     window.history.replaceState(
         {},
@@ -219,9 +252,14 @@ function loadPage(index) {
 
 function nextPage() {
 
-    if (currentPageIndex < pages.length - 1) {
+    if (
+        currentPageIndex <
+        pages.length - 1
+    ) {
 
-        loadPage(currentPageIndex + 1);
+        loadPage(
+            currentPageIndex + 1
+        );
 
     }
 
@@ -236,7 +274,9 @@ function previousPage() {
 
     if (currentPageIndex > 0) {
 
-        loadPage(currentPageIndex - 1);
+        loadPage(
+            currentPageIndex - 1
+        );
 
     }
 
@@ -302,13 +342,17 @@ function getStartingPage() {
         );
 
 
+    /*
+       Cover = page 0
+    */
+
     if (
         !isNaN(page) &&
-        page >= 1 &&
-        page <= pages.length
+        page >= 0 &&
+        page <= pages.length - 1
     ) {
 
-        return page - 1;
+        return page;
 
     }
 
