@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bulletin | Literary Club</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background: #f4f0e7;
+    font-family: Georgia, "Times New Roman", serif;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+    height: 64px;
+    width: 100%;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background: #f8f5ed;
+
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+
+    position: relative;
+    z-index: 10;
+}
+
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+
+.nav-logo {
+    width: 34px;
+    height: 34px;
+
+    object-fit: contain;
+}
+
+
+.nav-brand {
+    font-size: 18px;
+    color: #222;
+}
+
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 29px;
+}
+
+
+.nav-menu a {
+    color: #292929;
+
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: opacity 0.2s ease;
+}
+
+
+.nav-menu a:hover {
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   PDF VIEWER
+========================================================= */
+
+.viewer {
+    flex: 1;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 12px;
+
+    background: #e8e4da;
+}
+
+
+.viewer iframe {
+    width: 100%;
+    height: 100%;
+
+    border: none;
+
+    background: white;
+
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        height: 58px;
+
+        padding: 0 16px;
+    }
+
+
+    .nav-brand {
+        font-size: 16px;
+    }
+
+
+    .nav-menu {
+        gap: 14px;
+    }
+
+
+    .nav-menu a {
+        font-size: 12px;
+    }
+
+
+    .viewer {
+        padding: 0;
+    }
+
+
+    .viewer iframe {
+        box-shadow: none;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .nav-menu a:first-child {
+        display: none;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-left">
+
+        <img
+            src="../Home/Club logo.png"
+            class="nav-logo"
+            alt="Literary Club Logo"
+        >
+
+        <span class="nav-brand">
+            Literary Club
+        </span>
+
+    </div>
+
+
+    <nav class="nav-menu">
+
+        <a href="../index.html">
+            <strong>Home</strong>
+        </a>
+
+        <a href="../content/index.html">
+            CONTENTS
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     PDF
+===================================================== -->
+
+<main class="viewer">
+
+    <iframe
+        src="bulletin.pdf"
+        title="Literary Club Bi-Monthly Bulletin"
+    >
+    </iframe>
+
+</main>
+
+
+</body>
+
+</html>
