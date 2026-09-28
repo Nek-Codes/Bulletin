@@ -1,1 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contents | Literary Club Bi-Monthly Bulletin</title>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f4f0e7;
+    color: #252525;
+    font-family: Georgia, "Times New Roman", serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+    height: 64px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background: #f8f5ed;
+
+    position: relative;
+    z-index: 100;
+
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+
+/* LEFT */
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.nav-logo {
+    width: 34px;
+    height: 34px;
+
+    object-fit: contain;
+}
+
+.nav-brand {
+    font-size: 18px;
+    color: #222;
+}
+
+
+/* RIGHT */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 29px;
+}
+
+.nav-menu a {
+    color: #292929;
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: opacity 0.2s ease;
+}
+
+.nav-menu a:hover {
+    opacity: 0.55;
+}
+
+
+/* SEARCH ICON */
+
+.search {
+    width: 18px;
+    height: 18px;
+
+    position: relative;
+
+    margin-left: -2px;
+}
+
+.search::before {
+    content: "";
+
+    width: 10px;
+    height: 10px;
+
+    border: 2px solid #222;
+    border-radius: 50%;
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+}
+
+.search::after {
+    content: "";
+
+    width: 7px;
+    height: 2px;
+
+    background: #222;
+
+    position: absolute;
+
+    left: 11px;
+    top: 12px;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   CONTENTS HERO
+========================================================= */
+
+.contents-hero {
+    min-height: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    background: #e2e6d7;
+
+    padding: 65px 20px 60px;
+}
+
+
+.contents-hero-inner {
+    max-width: 850px;
+}
+
+
+.contents-label {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    letter-spacing: 1.5px;
+
+    margin-bottom: 20px;
+}
+
+
+.contents-title {
+    font-size: clamp(42px, 6vw, 68px);
+
+    font-weight: 500;
+
+    letter-spacing: 1px;
+
+    line-height: 1;
+
+    margin-bottom: 22px;
+}
+
+
+.contents-subtitle {
+    font-size: 17px;
+
+    font-style: italic;
+
+    line-height: 1.5;
+
+    color: #444;
+}
+
+
+/* =========================================================
+   CONTENTS SECTION
+========================================================= */
+
+.contents-section {
+    background: #f4f0e7;
+
+    padding: 70px 8% 85px;
+}
+
+
+.contents-inner {
+    width: 100%;
+    max-width: 1000px;
+
+    margin: auto;
+}
+
+
+/* HEADER */
+
+.contents-heading {
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+
+.contents-heading h2 {
+    font-size: 25px;
+
+    font-weight: 500;
+
+    margin-bottom: 12px;
+}
+
+
+.contents-heading p {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 13px;
+
+    color: #666;
+}
+
+
+/* =========================================================
+   CONTENT ITEMS
+========================================================= */
+
+.contents-list {
+    width: 100%;
+}
+
+
+.contents-item {
+    display: grid;
+
+    grid-template-columns: 90px 1fr 35px;
+
+    align-items: center;
+
+    min-height: 92px;
+
+    padding: 20px 10px;
+
+    border-top: 1px solid rgba(0,0,0,0.15);
+
+    text-decoration: none;
+
+    color: #252525;
+
+    transition:
+        background 0.25s ease,
+        padding 0.25s ease;
+}
+
+
+.contents-item:last-child {
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+}
+
+
+.contents-item:hover {
+    background: rgba(226,230,215,0.65);
+
+    padding-left: 18px;
+}
+
+
+/* NUMBER */
+
+.contents-number {
+    font-size: 17px;
+
+    font-style: italic;
+
+    color: #777;
+}
+
+
+/* TITLE */
+
+.contents-item-title {
+    font-size: 21px;
+
+    line-height: 1.3;
+
+    font-weight: 500;
+}
+
+
+.contents-item-description {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+
+    color: #777;
+
+    margin-top: 5px;
+
+    line-height: 1.4;
+}
+
+
+/* ARROW */
+
+.contents-arrow {
+    font-family: Arial, sans-serif;
+
+    font-size: 22px;
+
+    text-align: right;
+
+    transition: transform 0.2s ease;
+}
+
+
+.contents-item:hover .contents-arrow {
+    transform: translateX(5px);
+}
+
+
+/* =========================================================
+   BULLETIN BUTTON
+========================================================= */
+
+.bulletin-link-container {
+    display: flex;
+
+    justify-content: center;
+
+    margin-top: 60px;
+}
+
+
+.bulletin-link {
+    display: inline-block;
+
+    padding: 14px 28px;
+
+    border: 1px solid #252525;
+
+    color: #252525;
+
+    text-decoration: none;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 13px;
+
+    letter-spacing: 0.5px;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+
+.bulletin-link:hover {
+    background: #252525;
+
+    color: white;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    background: #000;
+
+    color: white;
+
+    padding: 37px 8% 40px;
+}
+
+
+.footer-inner {
+    max-width: 1120px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 55% 45%;
+
+    gap: 30px;
+}
+
+
+/* LEFT */
+
+.footer-left {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+.mite-logo {
+    width: 310px;
+
+    max-width: 100%;
+
+    height: auto;
+
+    margin-bottom: 17px;
+}
+
+
+.footer-left p {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    color: #eeeeee;
+
+    margin-left: 5px;
+}
+
+
+/* FOOTER ICONS */
+
+.footer-icons {
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    margin-top: 18px;
+
+    margin-left: 5px;
+}
+
+
+.footer-icons img {
+    width: 180px;
+
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* RIGHT */
+
+.footer-right {
+    text-align: center;
+
+    padding-top: 2px;
+}
+
+
+.footer-right p {
+    font-size: 12px;
+
+    line-height: 2.7;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    /* NAV */
+
+    .navbar {
+        height: 58px;
+
+        padding: 0 16px;
+    }
+
+
+    .nav-brand {
+        font-size: 16px;
+    }
+
+
+    .nav-menu {
+        gap: 13px;
+    }
+
+
+    .nav-menu a {
+        font-size: 12px;
+    }
+
+
+    .footer-icons {
+        margin-left: 0;
+
+        justify-content: center;
+    }
+
+
+    /* CONTENTS HERO */
+
+    .contents-hero {
+        min-height: 240px;
+
+        padding: 55px 20px;
+    }
+
+
+    .contents-label {
+        font-size: 13px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .contents-title {
+        font-size: 42px;
+    }
+
+
+    .contents-subtitle {
+        font-size: 15px;
+    }
+
+
+    /* CONTENTS */
+
+    .contents-section {
+        padding: 50px 7% 65px;
+    }
+
+
+    .contents-heading {
+        margin-bottom: 35px;
+    }
+
+
+    .contents-item {
+        grid-template-columns: 55px 1fr 25px;
+
+        min-height: 85px;
+
+        padding: 18px 5px;
+    }
+
+
+    .contents-item:hover {
+        padding-left: 10px;
+    }
+
+
+    .contents-number {
+        font-size: 14px;
+    }
+
+
+    .contents-item-title {
+        font-size: 18px;
+    }
+
+
+    .contents-item-description {
+        font-size: 11px;
+    }
+
+
+    .contents-arrow {
+        font-size: 19px;
+    }
+
+
+    /* FOOTER */
+
+    .footer {
+        padding: 35px 8%;
+    }
+
+
+    .footer-inner {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        gap: 35px;
+    }
+
+
+    .footer-left {
+        align-items: center;
+    }
+
+
+    .footer-left p {
+        margin-left: 0;
+    }
+
+
+    .footer-right {
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .nav-menu a:first-child {
+        display: none;
+    }
+
+
+    .contents-title {
+        font-size: 35px;
+    }
+
+
+    .contents-subtitle {
+        font-size: 14px;
+    }
+
+
+    .contents-item {
+        grid-template-columns: 45px 1fr 20px;
+    }
+
+
+    .contents-item-title {
+        font-size: 16px;
+    }
+
+
+    .contents-item-description {
+        font-size: 10px;
+    }
+
+
+    .bulletin-link {
+        font-size: 12px;
+
+        padding: 13px 22px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-left">
+
+        <img
+            src="../Home/Club logo.png"
+            class="nav-logo"
+            alt="Literary Club Logo"
+        >
+
+        <span class="nav-brand">
+            Literary Club
+        </span>
+
+    </div>
+
+
+    <nav class="nav-menu">
+
+        <a href="../index.html">
+            <strong>Home</strong>
+        </a>
+
+        <a href="index.html">
+            CONTENTS
+        </a>
+
+        <span class="search"></span>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     CONTENTS HERO
+===================================================== -->
+
+<section class="contents-hero">
+
+    <div class="contents-hero-inner">
+
+        <div class="contents-label">
+            LITERARY CLUB
+        </div>
+
+        <h1 class="contents-title">
+            CONTENTS
+        </h1>
+
+        <p class="contents-subtitle">
+            A collection of voices, ideas, moments and works
+            from this edition of the Bi-Monthly Bulletin.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTENTS
+===================================================== -->
+
+<section class="contents-section">
+
+    <div class="contents-inner">
+
+
+        <div class="contents-heading">
+
+            <h2>
+                Inside This Edition
+            </h2>
+
+            <p>
+                Select a section to begin reading.
+            </p>
+
+        </div>
+
+
+        <div class="contents-list">
+
+
+            <!-- 01 -->
+
+            <a
+                href="#"
+                class="contents-item"
+            >
+
+                <div class="contents-number">
+                    01
+                </div>
+
+                <div>
+
+                    <div class="contents-item-title">
+                        Motto, Mission, Vision &amp; Values
+                    </div>
+
+                    <div class="contents-item-description">
+                        The ideas and principles that guide our institution.
+                    </div>
+
+                </div>
+
+                <div class="contents-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- 02 -->
+
+            <a
+                href="#"
+                class="contents-item"
+            >
+
+                <div class="contents-number">
+                    02
+                </div>
+
+                <div>
+
+                    <div class="contents-item-title">
+                        Editorial Note
+                    </div>
+
+                    <div class="contents-item-description">
+                        A note from the team behind this edition.
+                    </div>
+
+                </div>
+
+                <div class="contents-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- 03 -->
+
+            <a
+                href="#"
+                class="contents-item"
+            >
+
+                <div class="contents-number">
+                    03
+                </div>
+
+                <div>
+
+                    <div class="contents-item-title">
+                        IQAC Report
+                    </div>
+
+                    <div class="contents-item-description">
+                        Highlights and institutional developments.
+                    </div>
+
+                </div>
+
+                <div class="contents-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- 04 -->
+
+            <a
+                href="#"
+                class="contents-item"
+            >
+
+                <div class="contents-number">
+                    04
+                </div>
+
+                <div>
+
+                    <div class="contents-item-title">
+                        Events &amp; Activities
+                    </div>
+
+                    <div class="contents-item-description">
+                        Moments, events and activities from campus life.
+                    </div>
+
+                </div>
+
+                <div class="contents-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- 05 -->
+
+            <a
+                href="#"
+                class="contents-item"
+            >
+
+                <div class="contents-number">
+                    05
+                </div>
+
+                <div>
+
+                    <div class="contents-item-title">
+                        Echoes of Ink
+                    </div>
+
+                    <div class="contents-item-description">
+                        Poems, stories, reflections and written expressions.
+                    </div>
+
+                </div>
+
+                <div class="contents-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- 06 -->
+
+            <a
+                href="#"
+                class="contents-item"
+            >
+
+                <div class="contents-number">
+                    06
+                </div>
+
+                <div>
+
+                    <div class="contents-item-title">
+                        Artistry Hub
+                    </div>
+
+                    <div class="contents-item-description">
+                        A space for visual creativity and artistic works.
+                    </div>
+
+                </div>
+
+                <div class="contents-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- 07 -->
+
+            <a
+                href="#"
+                class="contents-item"
+            >
+
+                <div class="contents-number">
+                    07
+                </div>
+
+                <div>
+
+                    <div class="contents-item-title">
+                        Best Practices &amp; Institutional Distinctiveness
+                    </div>
+
+                    <div class="contents-item-description">
+                        Practices and initiatives that define our institution.
+                    </div>
+
+                </div>
+
+                <div class="contents-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <!-- 08 -->
+
+            <a
+                href="#"
+                class="contents-item"
+            >
+
+                <div class="contents-number">
+                    08
+                </div>
+
+                <div>
+
+                    <div class="contents-item-title">
+                        Pixel Poets
+                    </div>
+
+                    <div class="contents-item-description">
+                        Photography, visual stories and moments captured.
+                    </div>
+
+                </div>
+
+                <div class="contents-arrow">
+                    →
+                </div>
+
+            </a>
+
+
+        </div>
+
+
+        <!-- BULLETIN -->
+
+        <div class="bulletin-link-container">
+
+            <a
+                href="../bulletin/index.html"
+                class="bulletin-link"
+            >
+                OPEN FULL BULLETIN
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+
+        <div class="footer-left">
+
+            <img
+                src="../Home/MITE Logo.png"
+                class="mite-logo"
+                alt="Modern Institute of Teacher Education"
+            >
+
+            <p>
+                Recognized by NCTE &amp; UGC Under Section 2(f),<br>
+                Affiliated to Nagaland University.
+            </p>
+
+
+            <div class="footer-icons">
+
+                <img
+                    src="../Home/Footer Icons.png"
+                    alt="NCTE"
+                >
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-right">
+
+            <p>
+                Modern Institute of teacher education
+            </p>
+
+            <p>
+                A.G. Road, P.O. Box: 964,<br>
+                Kohima, Nagaland.<br>
+                797001
+            </p>
+
+            <p>
+                Email: literaryclubmite@emite.co.in
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+</body>
+</html>
