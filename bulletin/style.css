@@ -57,7 +57,6 @@ body {
 .brand-link {
     display: flex;
     align-items: center;
-
     gap: 13px;
 
     text-decoration: none;
@@ -83,7 +82,6 @@ body {
 .nav-menu {
     display: flex;
     align-items: center;
-
     gap: 29px;
 }
 
@@ -114,6 +112,7 @@ body {
     flex-direction: column;
 
     align-items: center;
+    justify-content: center;
 
     padding: 15px 20px 12px;
 
@@ -122,30 +121,35 @@ body {
 
 
 /* =========================================================
-   PAGE
+   PAGE CONTAINER
 ========================================================= */
 
 .page-container {
     width: 100%;
-
     flex: 1;
 
     min-height: 0;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
+
+    overflow: hidden;
 }
+
+
+/* =========================================================
+   BULLETIN PAGE
+========================================================= */
 
 .page-container img {
     display: block;
 
-    max-width: 100%;
-    max-height: 100%;
-
     width: auto;
     height: auto;
+
+    max-width: 100%;
+    max-height: 100%;
 
     object-fit: contain;
 
@@ -161,35 +165,25 @@ body {
 ========================================================= */
 
 .controls {
-    width: 100%;
+    flex-shrink: 0;
 
     height: 48px;
-
-    flex-shrink: 0;
 
     display: flex;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 30px;
-
-    position: relative;
-
-    z-index: 100;
 }
 
 .control-button {
     width: 42px;
     height: 38px;
 
-    flex-shrink: 0;
-
     border: 1px solid #333;
 
     background: #f8f5ed;
-
     color: #252525;
 
     font-family:
@@ -202,25 +196,15 @@ body {
     cursor: pointer;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     padding: 0;
-
-    transition:
-        background 0.2s ease,
-        color 0.2s ease,
-        transform 0.1s ease;
 }
 
 .control-button:hover:not(:disabled) {
     background: #252525;
     color: white;
-}
-
-.control-button:active:not(:disabled) {
-    transform: scale(0.94);
 }
 
 .control-button:disabled {
@@ -251,95 +235,94 @@ body {
 
 
 /* =========================================================
-   MOBILE
+   PHONE
 ========================================================= */
 
 @media (max-width: 800px) {
 
     .navbar {
         height: 58px;
-
-        padding: 0 16px;
+        padding: 0 14px;
     }
-
 
     .nav-brand {
         font-size: 16px;
     }
 
-
     .nav-menu {
         gap: 14px;
     }
-
 
     .nav-menu a {
         font-size: 12px;
     }
 
 
-    /* =========================
+    /* -------------------------
        READER
-    ========================= */
+    ------------------------- */
 
     .reader {
         height: calc(100vh - 58px);
 
-        padding:
-            6px 6px 10px;
+        padding: 6px 6px 8px;
 
         gap: 8px;
     }
 
 
-    /* =========================
+    /* -------------------------
        PAGE
-    ========================= */
+    ------------------------- */
 
     .page-container {
         width: 100%;
+        height: calc(100% - 56px);
 
-        flex: 1;
+        flex: none;
 
-        min-height: 0;
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
     }
 
 
     .page-container img {
+        width: auto;
+        height: auto;
+
         max-width: 100%;
         max-height: 100%;
+
+        object-fit: contain;
 
         box-shadow:
             0 3px 12px rgba(0, 0, 0, 0.15);
     }
 
 
-    /* =========================
+    /* -------------------------
        CONTROLS
-    ========================= */
+    ------------------------- */
 
     .controls {
-        height: 52px;
+        width: 100%;
+        height: 48px;
 
         flex-shrink: 0;
 
-        gap: 28px;
-
-        z-index: 100;
+        gap: 25px;
     }
 
 
     .control-button {
-        width: 52px;
-        height: 44px;
+        width: 48px;
+        height: 40px;
 
-        border-radius: 6px;
-
-        font-size: 25px;
-
-        background: #f8f5ed;
-
-        border: 1px solid #333;
+        font-size: 22px;
     }
 
 
@@ -347,19 +330,13 @@ body {
         min-width: 65px;
 
         font-size: 13px;
-
-        background: #f8f5ed;
-
-        padding: 7px 4px;
-
-        border-radius: 4px;
     }
 
 }
 
 
 /* =========================================================
-   SMALL PHONES
+   SMALL PHONE
 ========================================================= */
 
 @media (max-width: 450px) {
@@ -368,7 +345,6 @@ body {
         display: none;
     }
 
-
     .nav-brand {
         font-size: 15px;
     }
@@ -376,33 +352,36 @@ body {
 
     .reader {
         padding:
-            4px 4px 8px;
+            4px 4px 6px;
 
         gap: 6px;
     }
 
 
-    .controls {
-        height: 50px;
+    .page-container {
+        height: calc(100% - 52px);
+    }
 
-        gap: 20px;
+
+    .controls {
+        height: 46px;
+
+        gap: 18px;
     }
 
 
     .control-button {
-        width: 50px;
-        height: 42px;
+        width: 46px;
+        height: 38px;
 
-        font-size: 23px;
+        font-size: 21px;
     }
 
 
     .page-counter {
-        min-width: 62px;
+        min-width: 60px;
 
         font-size: 12px;
-
-        padding: 7px 3px;
     }
 
 }
