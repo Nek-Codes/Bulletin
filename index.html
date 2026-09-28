@@ -1,38 +1,916 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Literary Club | Bi-Monthly Bulletin</title>
 
-    <title>Bi-monthly Bulletin</title>
+<style>
 
-    <link rel="stylesheet" href="style.css">
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #f4f0e7;
+    color: #252525;
+    font-family: Georgia, "Times New Roman", serif;
+    overflow-x: hidden;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+    height: 64px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    background: #f8f5ed;
+
+    position: relative;
+    z-index: 100;
+
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+
+/* LEFT */
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.nav-logo {
+    width: 34px;
+    height: 34px;
+
+    object-fit: contain;
+}
+
+.nav-brand {
+    font-size: 18px;
+    color: #222;
+}
+
+
+/* RIGHT */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 29px;
+}
+
+.nav-menu a {
+    color: #292929;
+    text-decoration: none;
+
+    font-size: 15px;
+
+    transition: opacity 0.2s ease;
+}
+
+.nav-menu a:hover {
+    opacity: 0.55;
+}
+
+.search {
+    width: 18px;
+    height: 18px;
+
+    position: relative;
+
+    margin-left: -2px;
+}
+
+.search::before {
+    content: "";
+
+    width: 10px;
+    height: 10px;
+
+    border: 2px solid #222;
+    border-radius: 50%;
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+}
+
+.search::after {
+    content: "";
+
+    width: 7px;
+    height: 2px;
+
+    background: #222;
+
+    position: absolute;
+
+    left: 11px;
+    top: 12px;
+
+    transform: rotate(45deg);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    height: 470px;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+
+    background-image:
+        linear-gradient(
+            rgba(0,0,0,0.40),
+            rgba(0,0,0,0.40)
+        ),
+        url("images/hero.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+.hero-content {
+    width: 90%;
+    max-width: 900px;
+
+    margin-top: -5px;
+}
+
+
+.hero-welcome {
+    font-family: Arial, sans-serif;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    margin-bottom: 27px;
+}
+
+
+.hero-title {
+    font-size: clamp(38px, 5vw, 57px);
+
+    font-weight: 500;
+
+    letter-spacing: 1px;
+
+    line-height: 1;
+
+    margin-bottom: 40px;
+}
+
+
+.hero-date {
+    font-size: 14px;
+
+    font-style: italic;
+
+    margin-bottom: 27px;
+}
+
+
+.hero-tagline {
+    font-size: 17px;
+
+    font-style: italic;
+
+    margin-bottom: 25px;
+}
+
+
+.hero-description {
+    font-size: 16px;
+
+    font-weight: 600;
+
+    line-height: 1.5;
+}
+
+
+/* DOWN ARROW */
+
+.hero-arrow {
+    position: absolute;
+
+    bottom: 20px;
+    left: 50%;
+
+    width: 14px;
+    height: 14px;
+
+    border-right: 3px solid white;
+    border-bottom: 3px solid white;
+
+    transform: translateX(-50%) rotate(45deg);
+}
+
+
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
+
+.about {
+    background: #f4f0e7;
+
+    padding: 55px 8% 60px;
+}
+
+
+.about-inner {
+    max-width: 1120px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 42% 58%;
+
+    align-items: center;
+
+    gap: 35px;
+}
+
+
+/* IMAGE */
+
+.about-image-container {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+
+.about-image {
+    width: 390px;
+    height: 270px;
+
+    max-width: 100%;
+
+    object-fit: cover;
+
+    /* Slightly irregular paper shape */
+
+    clip-path: polygon(
+        3% 7%,
+        11% 4%,
+        20% 6%,
+        30% 3%,
+        40% 6%,
+        51% 3%,
+        62% 6%,
+        73% 3%,
+        85% 7%,
+        95% 5%,
+        97% 18%,
+        94% 30%,
+        98% 43%,
+        95% 56%,
+        98% 69%,
+        94% 82%,
+        97% 93%,
+        86% 96%,
+        75% 93%,
+        64% 97%,
+        52% 94%,
+        41% 97%,
+        30% 93%,
+        19% 96%,
+        8% 92%,
+        4% 96%,
+        6% 83%,
+        2% 70%,
+        5% 57%,
+        2% 44%,
+        5% 31%,
+        2% 18%
+    );
+}
+
+
+/* TEXT */
+
+.about-text {
+    padding-left: 5px;
+}
+
+
+.about-label {
+    font-family: Arial, sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    margin-bottom: 24px;
+}
+
+
+.about-title {
+    font-size: 21px;
+
+    text-transform: uppercase;
+
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    margin-bottom: 20px;
+}
+
+
+.about-text p {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.55;
+
+    margin-bottom: 18px;
+}
+
+
+/* =========================================================
+   READING SECTION
+========================================================= */
+
+.reading {
+    min-height: 190px;
+
+    background: #e2e6d7;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 35px 8%;
+}
+
+
+.reading-inner {
+    width: 100%;
+    max-width: 1000px;
+
+    display: grid;
+
+    grid-template-columns: 30% 70%;
+
+    align-items: center;
+}
+
+
+/* DECORATION */
+
+.reading-decoration {
+    display: flex;
+
+    justify-content: center;
+}
+
+.reading-decoration img {
+    width: 115px;
+
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* LINK */
+
+.reading-link {
+    color: #252525;
+
+    font-size: clamp(25px, 3vw, 34px);
+
+    font-weight: 500;
+
+    text-decoration: underline;
+
+    transition: opacity 0.2s ease;
+}
+
+.reading-link:hover {
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    background: #000;
+
+    color: white;
+
+    padding: 37px 8% 40px;
+}
+
+
+.footer-inner {
+    max-width: 1120px;
+
+    margin: auto;
+
+    display: grid;
+
+    grid-template-columns: 55% 45%;
+
+    gap: 30px;
+}
+
+
+/* LEFT */
+
+.footer-left {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+}
+
+
+.mite-logo {
+    width: 310px;
+
+    max-width: 100%;
+
+    height: auto;
+
+    margin-bottom: 17px;
+}
+
+
+.footer-left p {
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.7;
+
+    color: #eeeeee;
+
+    margin-left: 5px;
+}
+
+
+/* RIGHT */
+
+.footer-right {
+    text-align: center;
+
+    padding-top: 2px;
+}
+
+
+.footer-right p {
+    font-size: 12px;
+
+    line-height: 2.7;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 800px) {
+
+    /* NAV */
+
+    .navbar {
+        height: 58px;
+
+        padding: 0 16px;
+    }
+
+    .nav-brand {
+        font-size: 16px;
+    }
+
+    .nav-menu {
+        gap: 13px;
+    }
+
+    .nav-menu a {
+        font-size: 12px;
+    }
+
+    .nav-menu a:nth-child(2) {
+        display: none;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        height: 430px;
+    }
+
+    .hero-welcome {
+        font-size: 17px;
+
+        margin-bottom: 20px;
+    }
+
+    .hero-title {
+        font-size: 34px;
+
+        margin-bottom: 28px;
+    }
+
+    .hero-date {
+        margin-bottom: 22px;
+    }
+
+    .hero-tagline {
+        font-size: 15px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+
+        padding: 0 10px;
+    }
+
+
+    /* ABOUT */
+
+    .about {
+        padding: 45px 7%;
+    }
+
+    .about-inner {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .about-image {
+        width: 100%;
+
+        max-width: 390px;
+
+        height: 245px;
+    }
+
+    .about-text {
+        padding-left: 0;
+    }
+
+
+    /* READING */
+
+    .reading {
+        padding: 40px 7%;
+    }
+
+    .reading-inner {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+
+        text-align: center;
+    }
+
+    .reading-link {
+        font-size: 25px;
+    }
+
+
+    /* FOOTER */
+
+    .footer {
+        padding: 35px 8%;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+        gap: 35px;
+    }
+
+    .footer-left {
+        align-items: center;
+    }
+
+    .footer-left p {
+        margin-left: 0;
+    }
+
+    .footer-right {
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .nav-menu a:first-child {
+        display: none;
+    }
+
+    .hero {
+        height: 400px;
+    }
+
+    .hero-title {
+        font-size: 29px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .about-title {
+        font-size: 19px;
+    }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-    <div class="button-row">
-        <img src="Buttons/Editorial.png" alt="Editorial Button">
-        <img src="Buttons/Vision.png" alt="Vision Button">
-        <img src="Buttons/Practices.png" alt="Practices Button">
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-left">
+
+        <!-- CHANGE THIS IMAGE -->
+        <img
+            src="images/logo.png"
+            class="nav-logo"
+            alt="Literary Club Logo"
+        >
+
+        <span class="nav-brand">
+            Literary Club
+        </span>
+
     </div>
 
-    <div class="button-row">
-        <img src="Buttons/IQAC.png" alt="IQAC Button">
-        <img src="Buttons/Events.png" alt="Events Button">
-        <img src="Buttons/Poetry.png" alt="Poetry Button">
+
+    <nav class="nav-menu">
+
+        <a href="index.html">
+            <strong>Home</strong>
+        </a>
+
+        <a href="#">
+            Best Practices &amp; Institution...
+        </a>
+
+        <a href="#contents">
+            CONTENTS
+        </a>
+
+        <span class="search"></span>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-welcome">
+            Welcome to the
+        </div>
+
+        <h1 class="hero-title">
+            BI-MONTHLY BULLETIN
+        </h1>
+
+        <div class="hero-date">
+            30-09-2026
+        </div>
+
+        <div class="hero-tagline">
+            Where words find a voice
+        </div>
+
+        <div class="hero-description">
+            A Space for readers, writers, thinkers and dreamers to explore,
+            create and share.
+        </div>
+
     </div>
 
-    <div class="button-row">
-        <img src="Buttons/Art.png" alt="Art Button">
-        <img src="Buttons/Photography.png" alt="Photography Button">
-        <img src="Buttons/Chronicles.png" alt="Chronicles Button">
+
+    <div class="hero-arrow"></div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section class="about">
+
+    <div class="about-inner">
+
+
+        <div class="about-image-container">
+
+            <!-- CHANGE THIS IMAGE -->
+
+            <img
+                src="images/about.jpg"
+                class="about-image"
+                alt="Books and literature"
+            >
+
+        </div>
+
+
+        <div class="about-text">
+
+            <div class="about-label">
+                About the Bulletin
+            </div>
+
+            <h2 class="about-title">
+                Built on curiosity and works
+            </h2>
+
+            <p>
+                The <strong>Literary Club Bi-Monthly Bulletin</strong>
+                is a creative space that brings together the voices,
+                ideas, and imagination of our students. Published every
+                two months, it captures moments from the club's activities
+                while providing a platform for poetry, stories, reflections,
+                artwork, and other forms of creative expression.
+            </p>
+
+            <p>
+                More than just a collection of writings, the bulletin is a
+                celebration of curiosity, creativity, and the joy of
+                expressing oneself through words and art. Each edition
+                offers something new to read, discover, and share.
+            </p>
+
+        </div>
+
     </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     START READING
+===================================================== -->
+
+<section class="reading" id="contents">
+
+    <div class="reading-inner">
+
+
+        <div class="reading-decoration">
+
+            <!-- CHANGE THIS IMAGE -->
+
+            <img
+                src="images/reading-decoration.png"
+                alt=""
+            >
+
+        </div>
+
+
+        <div>
+
+            <!-- CHANGE THIS LINK -->
+
+            <a
+                href="bulletin/index.html"
+                class="reading-link"
+            >
+                CLICK HERE TO START READING
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+
+        <div class="footer-left">
+
+            <!-- CHANGE THIS IMAGE -->
+
+            <img
+                src="images/mite-logo.png"
+                class="mite-logo"
+                alt="Modern Institute of Teacher Education"
+            >
+
+            <p>
+                Recognized by NCTE &amp; UGC Under Section 2(f),<br>
+                Affiliated to Nagaland University.
+            </p>
+
+        </div>
+
+
+        <div class="footer-right">
+
+            <p>
+                Modern Institute of teacher education
+            </p>
+
+            <p>
+                A.G. Road, P.O. Box: 964,<br>
+                Kohima, Nagaland.<br>
+                797001
+            </p>
+
+            <p>
+                Email: literaryclubmite@emite.co.in
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
 
 </body>
-
 </html>
-```
+
+
+
