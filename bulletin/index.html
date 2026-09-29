@@ -165,50 +165,52 @@ function loadPage(index) {
     }
 
 
+    /* Keep index within range */
+
+    if (index < 0) {
+        index = 0;
+    }
+
+    if (index >= pages.length) {
+        index = pages.length - 1;
+    }
+
+
     currentPageIndex = index;
 
+
+    /* Load image */
 
     bulletinPage.src =
         "pages/" + pages[currentPageIndex];
 
 
     /*
+
        Page numbering:
 
-       Index 0 = Cover = 00
-       Index 1 = 01.jpg = 01
-       Index 2 = 02.jpg = 02
+       Index 0 = Page 01
+       Index 1 = Page 02
+       Index 2 = Page 03
        etc.
+
     */
 
-    let pageNumber;
-
-    if (currentPageIndex === 0) {
-
-        pageNumber = 0;
-
-    } else {
-
-        pageNumber = currentPageIndex;
-
-    }
+    const pageNumber =
+        currentPageIndex + 1;
 
 
     currentPage.textContent =
         String(pageNumber).padStart(2, "0");
 
 
-    /*
-       Total excludes the cover
-    */
+    /* Total pages */
 
     totalPages.textContent =
-        String(pages.length - 1).padStart(2, "0");
+        String(pages.length).padStart(2, "0");
 
 
-    /*
-       Disable buttons
-    */
+    /* Disable buttons */
 
     previousButton.disabled =
         currentPageIndex === 0;
@@ -218,18 +220,7 @@ function loadPage(index) {
         currentPageIndex === pages.length - 1;
 
 
-    /*
-       Update URL
-
-       Cover:
-       ?page=0
-
-       Page 01:
-       ?page=1
-
-       Page 02:
-       ?page=2
-    */
+    /* Update URL */
 
     const newUrl =
         window.location.pathname +
@@ -343,16 +334,18 @@ function getStartingPage() {
 
 
     /*
-       Cover = page 0
+       URL page 1 = array index 0
+       URL page 2 = array index 1
+       etc.
     */
 
     if (
         !isNaN(page) &&
-        page >= 0 &&
-        page <= pages.length - 1
+        page >= 1 &&
+        page <= pages.length
     ) {
 
-        return page;
+        return page - 1;
 
     }
 
