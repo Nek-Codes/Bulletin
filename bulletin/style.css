@@ -136,41 +136,7 @@ body {
 
     overflow: hidden;
 }
-/* =========================================================
-   PAGE TRANSITION
-========================================================= */
 
-.page-container img {
-    transition:
-        opacity 0.35s ease,
-        transform 0.35s ease;
-}
-
-
-/* Page leaving */
-
-.page-container img.page-exit-left {
-    opacity: 0;
-    transform: translateX(-24px) scale(0.985);
-}
-
-.page-container img.page-exit-right {
-    opacity: 0;
-    transform: translateX(24px) scale(0.985);
-}
-
-
-/* Page entering */
-
-.page-container img.page-enter-left {
-    opacity: 0;
-    transform: translateX(-24px) scale(0.985);
-}
-
-.page-container img.page-enter-right {
-    opacity: 0;
-    transform: translateX(24px) scale(0.985);
-}
 
 /* =========================================================
    BULLETIN PAGE
@@ -191,6 +157,53 @@ body {
 
     box-shadow:
         0 5px 22px rgba(0, 0, 0, 0.18);
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+/* =========================================================
+   EDITORIAL PAGE TRANSITION
+========================================================= */
+
+
+/* Page leaving */
+
+.page-container img.page-exit-left {
+    opacity: 0;
+
+    transform:
+        translateX(-24px)
+        scale(0.985);
+}
+
+.page-container img.page-exit-right {
+    opacity: 0;
+
+    transform:
+        translateX(24px)
+        scale(0.985);
+}
+
+
+/* Page entering */
+
+.page-container img.page-enter-left {
+    opacity: 0;
+
+    transform:
+        translateX(-24px)
+        scale(0.985);
+}
+
+.page-container img.page-enter-right {
+    opacity: 0;
+
+    transform:
+        translateX(24px)
+        scale(0.985);
 }
 
 
@@ -276,16 +289,20 @@ body {
 
     .navbar {
         height: 58px;
+
         padding: 0 14px;
     }
+
 
     .nav-brand {
         font-size: 16px;
     }
 
+
     .nav-menu {
         gap: 14px;
     }
+
 
     .nav-menu a {
         font-size: 12px;
@@ -308,7 +325,9 @@ body {
     }
 
 
-    /* PAGE AREA */
+    /* -----------------------------------------------------
+       PAGE AREA
+    ----------------------------------------------------- */
 
     .page-container {
         width: 100%;
@@ -339,7 +358,9 @@ body {
     }
 
 
-    /* BUTTON AREA */
+    /* -----------------------------------------------------
+       BUTTON AREA
+    ----------------------------------------------------- */
 
     .controls {
         width: 100%;
@@ -432,28 +453,6 @@ body {
     .page-container img {
         max-width: 100%;
         max-height: 100%;
-    }
-
-
-    .controls {
-        height: 45px;
-
-        gap: 18px;
-    }
-
-
-    .control-button {
-        width: 46px;
-        height: 38px;
-
-        font-size: 21px;
-    }
-
-
-    .page-counter {
-        min-width: 60px;
-
-        font-size: 12px;
     }
 
 
