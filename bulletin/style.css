@@ -136,7 +136,41 @@ body {
 
     overflow: hidden;
 }
+/* =========================================================
+   PAGE TRANSITION
+========================================================= */
 
+.page-container img {
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+/* Page leaving */
+
+.page-container img.page-exit-left {
+    opacity: 0;
+    transform: translateX(-24px) scale(0.985);
+}
+
+.page-container img.page-exit-right {
+    opacity: 0;
+    transform: translateX(24px) scale(0.985);
+}
+
+
+/* Page entering */
+
+.page-container img.page-enter-left {
+    opacity: 0;
+    transform: translateX(-24px) scale(0.985);
+}
+
+.page-container img.page-enter-right {
+    opacity: 0;
+    transform: translateX(24px) scale(0.985);
+}
 
 /* =========================================================
    BULLETIN PAGE
