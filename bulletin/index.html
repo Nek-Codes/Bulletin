@@ -4,6 +4,7 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Bulletin | Literary Club</title>
@@ -14,10 +15,6 @@
 
 <body>
 
-
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
 
 <header class="navbar">
 
@@ -56,14 +53,8 @@
 
 
 
-<!-- =====================================================
-     BULLETIN READER
-===================================================== -->
-
 <main class="reader">
 
-
-    <!-- PAGE -->
 
     <div class="page-container">
 
@@ -75,8 +66,6 @@
 
     </div>
 
-
-    <!-- CONTROLS -->
 
     <div class="controls">
 
@@ -123,20 +112,12 @@
 
 
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script src="pages.js"></script>
 
 <script>
 
 let currentPageIndex = 0;
 
-
-/* =========================================================
-   ELEMENTS
-========================================================= */
 
 const bulletinPage =
     document.getElementById("bulletinPage");
@@ -154,18 +135,16 @@ const totalPages =
     document.getElementById("totalPages");
 
 
-/* =========================================================
-   LOAD PAGE
-========================================================= */
 
-function loadPage(index) {
+function loadPage(
+    index,
+    direction = "next"
+) {
 
     if (pages.length === 0) {
         return;
     }
 
-
-    /* Keep index within range */
 
     if (index < 0) {
         index = 0;
@@ -179,48 +158,79 @@ function loadPage(index) {
     currentPageIndex = index;
 
 
-    /* Load image */
+    const exitClass =
+        direction === "next"
+            ? "page-exit-left"
+            : "page-exit-right";
 
-    bulletinPage.src =
-        "pages/" + pages[currentPageIndex];
+
+    const enterClass =
+        direction === "next"
+            ? "page-enter-right"
+            : "page-enter-left";
 
 
-    /*
+    bulletinPage.classList.remove(
+        "page-enter-left",
+        "page-enter-right",
+        "page-exit-left",
+        "page-exit-right"
+    );
 
-       Page numbering:
 
-       Index 0 = Page 01
-       Index 1 = Page 02
-       Index 2 = Page 03
-       etc.
+    bulletinPage.classList.add(
+        exitClass
+    );
 
-    */
+
+    setTimeout(() => {
+
+        bulletinPage.src =
+            "pages/" +
+            pages[currentPageIndex];
+
+
+        bulletinPage.classList.remove(
+            exitClass
+        );
+
+        bulletinPage.classList.add(
+            enterClass
+        );
+
+
+        void bulletinPage.offsetWidth;
+
+
+        bulletinPage.classList.remove(
+            enterClass
+        );
+
+
+    }, 180);
+
 
     const pageNumber =
         currentPageIndex + 1;
 
 
     currentPage.textContent =
-        String(pageNumber).padStart(2, "0");
+        String(pageNumber)
+            .padStart(2, "0");
 
-
-    /* Total pages */
 
     totalPages.textContent =
-        String(pages.length).padStart(2, "0");
+        String(pages.length)
+            .padStart(2, "0");
 
-
-    /* Disable buttons */
 
     previousButton.disabled =
         currentPageIndex === 0;
 
-
     nextButton.disabled =
-        currentPageIndex === pages.length - 1;
+        currentPageIndex ===
+        pages.length - 1;
 
-
-    /* Update URL */
 
     const newUrl =
         window.location.pathname +
@@ -237,9 +247,6 @@ function loadPage(index) {
 }
 
 
-/* =========================================================
-   NEXT PAGE
-========================================================= */
 
 function nextPage() {
 
@@ -249,7 +256,8 @@ function nextPage() {
     ) {
 
         loadPage(
-            currentPageIndex + 1
+            currentPageIndex + 1,
+            "next"
         );
 
     }
@@ -257,16 +265,16 @@ function nextPage() {
 }
 
 
-/* =========================================================
-   PREVIOUS PAGE
-========================================================= */
 
 function previousPage() {
 
-    if (currentPageIndex > 0) {
+    if (
+        currentPageIndex > 0
+    ) {
 
         loadPage(
-            currentPageIndex - 1
+            currentPageIndex - 1,
+            "previous"
         );
 
     }
@@ -274,9 +282,6 @@ function previousPage() {
 }
 
 
-/* =========================================================
-   BUTTON EVENTS
-========================================================= */
 
 nextButton.addEventListener(
     "click",
@@ -290,34 +295,23 @@ previousButton.addEventListener(
 );
 
 
-/* =========================================================
-   KEYBOARD CONTROLS
-========================================================= */
 
 document.addEventListener(
     "keydown",
     function(event) {
 
         if (event.key === "ArrowRight") {
-
             nextPage();
-
         }
 
-
         if (event.key === "ArrowLeft") {
-
             previousPage();
-
         }
 
     }
 );
 
 
-/* =========================================================
-   OPEN SPECIFIC PAGE FROM URL
-========================================================= */
 
 function getStartingPage() {
 
@@ -332,12 +326,6 @@ function getStartingPage() {
             urlParams.get("page")
         );
 
-
-    /*
-       URL page 1 = array index 0
-       URL page 2 = array index 1
-       etc.
-    */
 
     if (
         !isNaN(page) &&
@@ -355,9 +343,6 @@ function getStartingPage() {
 }
 
 
-/* =========================================================
-   START
-========================================================= */
 
 loadPage(
     getStartingPage()
