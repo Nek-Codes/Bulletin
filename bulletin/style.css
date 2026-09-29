@@ -422,8 +422,6 @@ body {
         font-size: 12px;
     }
 
-}
-
 
     .controls {
         height: 46px;
@@ -445,8 +443,3 @@ body {
 
         font-size: 12px;
     }
-
-}
-body {
-    background: red !important;
-}
