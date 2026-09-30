@@ -281,6 +281,12 @@ body {
     letter-spacing: 1px;
 
     color: #f8f5ed;
+
+    background: rgba(20, 15, 10, 0.55);
+
+    padding: 7px 10px;
+
+    border-radius: 4px;
 }
 
 .separator {
@@ -334,10 +340,6 @@ body {
     }
 
 
-    /* -----------------------------------------------------
-       PAGE AREA
-    ----------------------------------------------------- */
-
     .page-container {
         width: 100%;
 
@@ -366,10 +368,6 @@ body {
         object-fit: contain;
     }
 
-
-    /* -----------------------------------------------------
-       BUTTON AREA
-    ----------------------------------------------------- */
 
     .controls {
         width: 100%;
@@ -424,6 +422,12 @@ body {
         text-align: center;
 
         color: #f8f5ed;
+
+        background: rgba(20, 15, 10, 0.55);
+
+        padding: 6px 8px;
+
+        border-radius: 4px;
     }
 
 }
@@ -487,10 +491,16 @@ body {
 
         font-size: 12px;
 
-        color: #f8f5ed;
+        padding: 6px 8px;
     }
 
 }
+
+
+/* =========================================================
+   PHONE LANDSCAPE
+========================================================= */
+
 @media (max-width: 800px) and (orientation: landscape) {
 
     .reader {
@@ -498,44 +508,71 @@ body {
 
         padding: 4px 8px;
 
-        gap: 4px;
+        gap: 0;
     }
 
 
     .page-container {
-        height: calc(100dvh - 108px);
-
-        flex: 1;
-
-        min-height: 0;
-
         width: 100%;
+
+        height: calc(100dvh - 62px);
+
+        flex: none;
     }
 
 
     .controls {
-        height: 42px;
+        position: fixed;
 
-        flex-shrink: 0;
+        top: 50%;
+        left: 0;
 
-        gap: 18px;
+        width: 100%;
+        height: 0;
+
+        transform: translateY(-50%);
+
+        display: flex;
+
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 8px;
+
+        gap: 0;
+
+        pointer-events: none;
+
+        z-index: 20;
     }
 
 
     .control-button {
         width: 42px;
-        height: 34px;
+        height: 38px;
+
+        pointer-events: auto;
+
+        border-radius: 5px;
 
         font-size: 20px;
     }
 
 
     .page-counter {
+        position: absolute;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+
         min-width: 60px;
+
+        padding: 5px 7px;
 
         font-size: 12px;
 
-        padding: 5px 7px;
+        border-radius: 4px;
     }
 
 }
