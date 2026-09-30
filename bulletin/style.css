@@ -15,7 +15,13 @@ body {
 }
 
 body {
-    background: #e8e4da;
+    background:
+        linear-gradient(
+            rgba(20, 15, 10, 0.25),
+            rgba(20, 15, 10, 0.25)
+        ),
+        url("background.jpg") center center / cover no-repeat fixed;
+
     color: #252525;
 
     font-family:
