@@ -62,6 +62,5 @@ const pages = [
     "61.jpg",
     "62.jpg",
     "63.jpg",
-    "64.jpg",
-    "65.jpg"
+    "64.jpg"
 ];
