@@ -491,3 +491,51 @@ body {
     }
 
 }
+@media (max-width: 800px) and (orientation: landscape) {
+
+    .reader {
+        height: calc(100dvh - 58px);
+
+        padding: 4px 8px;
+
+        gap: 4px;
+    }
+
+
+    .page-container {
+        height: calc(100dvh - 108px);
+
+        flex: 1;
+
+        min-height: 0;
+
+        width: 100%;
+    }
+
+
+    .controls {
+        height: 42px;
+
+        flex-shrink: 0;
+
+        gap: 18px;
+    }
+
+
+    .control-button {
+        width: 42px;
+        height: 34px;
+
+        font-size: 20px;
+    }
+
+
+    .page-counter {
+        min-width: 60px;
+
+        font-size: 12px;
+
+        padding: 5px 7px;
+    }
+
+}
